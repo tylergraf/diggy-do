@@ -1,0 +1,28 @@
+<div class="page">
+  <section class="admin-chores-header">
+    <a class="btn btn-green"><i class="icon icon-plus"></i></a>
+    <h3>Add New Chore</h3>
+  </section>
+  <section class="admin-chores-filter">
+    <span class="btn btn-green">Filter</span>
+    <span class="btn btn-green">Sort</span>
+  </section>
+  <section class="admin-chores">
+    <ul class="unstyled task-list">
+      <li ng-repeat="task in tasks" class="task-list-item">
+        <span class="avatar avatar-{{task._kid.avatar.color}}"><i class="icon icon-{{task._kid.avatar.icon}}"></i></span>
+        <span class="task-name">{{task.name}}</span>
+        <span class="task-list-bottom">
+          <span class="show-{{task.repeated.monday}}">M</span>
+          <span class="show-{{task.repeated.tuesday}}">T</span>
+          <span class="show-{{task.repeated.wednesday}}">W</span>
+          <span class="show-{{task.repeated.thursday}}">Th</span>
+          <span class="show-{{task.repeated.friday}}">F</span>
+          <span class="show-{{task.repeated.saturday}}">S</span>
+          <span class="show-{{task.repeated.sunday}}">Su</span>
+        </span>
+      </li>
+    </ul>
+  </section>
+  
+</div>

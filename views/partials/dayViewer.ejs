@@ -1,0 +1,26 @@
+<div class="day-view chore-feed-{{feed}}">
+  <header class="header">
+    <a href="#" class="next" ng-tap="nextDay()">&#9654;</a>
+    <a href="#" class="prev" ng-tap="prevDay()">&#9664;</a>
+    <p class="day">{{day}}</p>
+  </header>
+  <div class="totals">
+    <div class="approved"><strong>approved</strong>({{total.approved}})</div>
+    <div class="done"><strong>done</strong>({{total.done}})</div>
+    <div class="not-done"><strong>not done</strong>({{total.notDone}})</div>
+  </div>
+    <ul class="unstyled chore-feed hide">
+      <li ng-repeat="task in tasks" class="task-list-item">
+        <span class="avatar avatar-{{task._kid.avatar.color}}"><i class="icon icon-{{task._kid.avatar.icon}}"></i></span>
+        <h4 class="done-{{task.done}}">{{task.name}} 
+          <input type="checkbox" ng-model="task.approved" class="hide" ng-tap="approveTransaction(task.transactionId,$index)">
+        </h4>
+      </li>
+    </ul>
+    <ul class="unstyled task-list hide">
+      <li ng-repeat="task in tasks" class="task-list-item">
+        <span class="value">{{task.value}}</span>
+        <a href="#" ng-tap="transact(task._id,task._kid,task.transactionId,$index)" class="done-{{task.done}}">{{task.name}}</a> <span class="approved-{{task.approved}}">approved</span>
+      </li>
+    </ul>
+</div>

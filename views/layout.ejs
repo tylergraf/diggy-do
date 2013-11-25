@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+  <title>diggy do</title>
+  <meta name="description" content="Dangle">
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Diggy Do">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+
+  <link href="/img/apple/diggy-do-icon-60.png" rel="apple-touch-icon" />
+  <link href="/img/apple/diggy-do-icon-76.png" rel="apple-touch-icon" sizes="76x76" />
+  <link href="/img/apple/diggy-do-icon-120.png" rel="apple-touch-icon" sizes="120x120" />
+  <link href="/img/apple/diggy-do-icon-152.png" rel="apple-touch-icon" sizes="152x152" />
+
+  <link rel="icon" href="/css/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap/css/bootstrap-responsive.min.css">
+  <link rel="stylesheet" href="http://i.icomoon.io/public/temp/baba3d39b3/UntitledProject2/style.css">
+  <link rel="stylesheet" type="text/css" href="/css/diggy-do.css">
+  <% if(typeof assets != "undefined" && assets.css) { %>
+    <% for(var filename in assets.css) { %>
+      <link rel="stylesheet" type="text/css" href="/css/<%= assets.css[filename] %>">
+    <% } %>
+  <% } %>
+</head>
+<body ng-app="dangle" class="container page-{{pageName}}">
+  <%- include partials/_nav.ejs %>
+  <%- include partials/_grabber.ejs %>
+  
+<%- body %>
+
+  
+  <% if(typeof assets != "undefined" && assets.js) { %>
+    <% for(var filename in assets.js) { %>
+      <script src="/js/<%= assets.js[filename] %>"></script>
+    <% } %>
+  <% } %>
+  
+</body>
+</html>

@@ -1,0 +1,21 @@
+
+.prev {
+  float: left;
+  margin-right: 20px;
+}
+.next {
+  float: right;
+  margin: 0 20px;
+}
+
+.done-true {
+  text-decoration: line-through;
+}
+.module {
+  float: left;
+  margin-right: 20px;
+}
+
+.approved-false {
+  display: none;
+}

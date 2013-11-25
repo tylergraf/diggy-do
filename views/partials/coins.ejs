@@ -1,0 +1,15 @@
+<div class="coins-list page">
+  <header class="coins-header">
+    <i class="icon icon-ruby"></i>
+    <h3 class="points">{{transactions[0]._kid.points}}</h3>
+  </header>
+  <ul class="unstyled">
+    <li ng-repeat="transaction in transactions" class="coins-list-item">
+      <div class="coins-right">
+        <span class="name">{{transaction._task.name}}</span>
+        <span class="date">{{transaction.dateUpdated}}</span>
+      </div>
+      <span class="value">{{transaction._task.value}}</span>
+    </li>
+  </ul>
+</div>

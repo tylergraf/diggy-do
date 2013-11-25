@@ -1,0 +1,70 @@
+<h2>Admin</h2>
+<p><a href="/kids">Kids</a></p>
+<div class="module">
+  <form class="form" id="addKid" ng-submit="addKid()">
+    <label for="kidName">New Kid</label>
+    <input type="text" name="kidName" ng-model="kidName">
+    <p><button type="submit" class="btn">Add Kid</button></p>
+  </form>
+</div>
+<div class="module">
+  <form class="form" id="addTask" ng-submit="addTask(task)">
+    <label for="taskName">Add Task</label>
+    <input type="text" name="taskName" ng-model="task.name">
+    <p>Kid</p>
+    <div ng-repeat='kid in kids'>
+      <label class="radio">
+        <input type="radio" name="kid" value="{{kid._id}}" ng-model="task._kid">
+        {{kid.name}}
+      </label>
+    </div>
+    <p>Type</p>
+     <label class="radio">
+        <input type="radio" name="type" value="repeated" ng-model="task.type">
+        Repeated
+      </label>
+     <label class="radio">
+        <input type="radio" name="type" value="bonus" ng-model="task.type">
+        Bonus
+      </label>
+    <div class="repeated-wrapper type-{{task.type}}">
+      <p>Frequency</p>
+      <label for="monday" class="checkbox">
+        <input type="checkbox" name="monday" ng-model="task.repeated.monday">
+        Monday
+      </label>
+      <label for="tuesday" class="checkbox">
+        <input type="checkbox" name="tuesday" ng-model="task.repeated.tuesday">
+        Tuesday
+      </label>
+      <label for="wednesday" class="checkbox">
+        <input type="checkbox" name="wednesday" ng-model="task.repeated.wednesday">
+        Wednesday
+      </label>
+      <label for="thursday" class="checkbox">
+        <input type="checkbox" name="thursday" ng-model="task.repeated.thursday">
+        Thursday
+      </label>
+      <label for="friday" class="checkbox">
+        <input type="checkbox" name="friday" ng-model="task.repeated.friday">
+        Friday
+      </label>
+      <label for="saturday" class="checkbox">
+        <input type="checkbox" name="saturday" ng-model="task.repeated.saturday">
+        Saturday
+      </label>
+      <label for="sunday" class="checkbox">
+        <input type="checkbox" name="sunday" ng-model="task.repeated.sunday">
+        Sunday
+      </label>
+    </div>
+    <label for="taskValue">Value</label>
+    <input type="text" name="taskValue" ng-model="task.value">
+
+    <p><button type="submit" class="btn">Add Task</button></p>
+  </form>
+</div>
+<div class="module">
+  Stuff that's done.
+  <div class="day-viewer" day-viewer property="tasks" admin="true" url="/api/tasks"></div>
+</div>

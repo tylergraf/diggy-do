@@ -1,0 +1,7 @@
+<div class="grabber-wrapper toggle-{{grabberToggle}}" ng-controller="grabberCtrl">
+  <i class="icon icon-grabber" ng-tap="toggleGrabber()"></i>
+  <ul class="unstyled grabber-list">
+    <li class="grabber-list-item" ng-tap="toggleGrabber()">Notes</li>
+    <li class="grabber-list-item" ng-tap="navigate('RL',grabberURL);toggleGrabber()"><i class="icon icon-profile"></i>{{grabberLabel}}</li>
+  </ul>
+</div>

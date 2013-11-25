@@ -1,0 +1,64 @@
+
+<div class="container">
+  <div class="task-wrapper">
+    <header class="task-header">
+      <h2>New Task</h2>
+    </header>
+    <form action="/task/new" method='POST' class="form form-horizontal">
+      <fieldset>
+      <label for="task">Task</label>
+      <input type="text" name="name" id="task">
+
+      <label for="value">Value</label>
+      <input type="text" name="value" id="value">
+
+      <label for="completed">Completed</label>
+      <input type="checkbox" name="completed" id="completed">
+
+      <label for="kidId">Kid</label>
+      <input type="text" name="kidId" id="kidId">
+
+      <label for="type">Type</label>
+      <select name="type" id="type">
+        <option value="chore">Chore</option>
+        <option value="task">Task</option>
+        <option value="bonus">Bonus</option>
+      </select>
+
+      <label for="due">Due Date</label>
+      <input type="text" name="due" id="due">
+
+      <label class="checkbox">
+        <input type="checkbox" name="repeated" value="sun">Sun
+      </label>
+      <label class="checkbox">
+        <input type="checkbox" name="repeated" value="mon">Mon
+      </label>
+      <label class="checkbox">
+        <input type="checkbox" name="repeated" value="tue">Tue
+      </label>
+      <label class="checkbox">
+        <input type="checkbox" name="repeated" value="wed">Wed
+      </label>
+      <label class="checkbox">
+        <input type="checkbox" name="repeated" value="thu">Thu
+      </label>
+      <label class="checkbox">
+        <input type="checkbox" name="repeated" value="fri">Fri
+      </label>
+      <label class="checkbox">
+        <input type="checkbox" name="repeated" value="sat">Sat
+      </label>
+
+      <input type="submit" value="Submit">
+    </fieldset>
+    </form>
+  </div>
+</div>
+
+ ,value: Number
+ ,kidId: Number
+ ,completed: Boolean
+ ,type: String
+ ,due: Date
+ ,repeated: String

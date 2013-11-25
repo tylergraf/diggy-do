@@ -1,0 +1,88 @@
+<style type="text/css">
+  .days-body {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .day {
+    width: 320px;
+    margin: 0;
+    float: left;
+    height: 300px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+
+  .sequential-days {
+    height: 60px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+  }
+  .sequential-day {
+    height: 100%;
+    width: 40px;
+    float: left;
+    border-right: 1px solid #ddd;
+  }
+</style>
+<div class="fluid-container">
+  <div class="task-wrapper">
+    <header class="task-header">
+      
+    </header>
+    <section class="days-body clearfix">
+      <div class="days">
+        <% for(var i = 0; i < 31; i++){ %> 
+        <div class="day day-<%= i %>">
+          <p>Day <%= i + 1 %></p>
+        </div>
+        <% } %>
+      </div>
+    </section>
+    <section class="sequential-days">
+      <% for(var i = 0; i < 31; i++){ %> 
+        <div class="sequential-day sequential-day-<%= i %>">
+          <p>Day <%= i + 1 %></p>
+        </div>
+        <% } %>
+    </section>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    function setHorizontalScroll(wrapper, element, setWidth) {
+      var _wrapper = $(wrapper),
+          _element = $(element);
+
+      var wrapperWidth = $(wrapper)[0].offsetWidth;
+
+      if(setWidth){
+        _element.width(wrapperWidth);
+      }
+      // GET NUMBER OF DAY DIVS
+      var count = _element.length;
+
+      var elementWidth = _element[0].offsetWidth * count;
+
+      // SET DAY WRAPPER WIDTH ACCORDING TO NUMBER OF DAY DIVS
+      _wrapper.css('width',elementWidth);
+
+      // INIT FLICKABLE
+      _wrapper.flickable({segments: count});
+      _wrapper.flickable('segment', count);
+    }
+
+    setHorizontalScroll('.days','.day',true);
+
+    // setHorizontalScroll('.sequential-days','.sequential-day');
+    $('.sequential-days').swipeLeft(function(){
+      console.log('swiped');
+    });
+
+  });
+
+</script>

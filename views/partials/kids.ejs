@@ -1,0 +1,14 @@
+<div class="page">
+  <h2 class="heading">Login</h2>
+  <section>
+    <a ng-repeat="kid in kids" class="avatar avatar-{{kid.avatar.color}}" ng-tap="initLogin(kid)">
+      <i class="icon icon-{{kid.avatar.icon}}"></i>
+      <span class="kid-name">{{kid.name}}</span>
+    </a> 
+    <a class="avatar avatar-red" ng-tap="initLogin({admin: true, passcode: '0000', name: 'Mom', _id: 'all'})">
+      <i class="icon icon-tank"></i>
+      <span class="kid-name">Mom</span>
+    </a>
+  </section>
+</div>
+<!-- <a href="/admin">admin</a> -->

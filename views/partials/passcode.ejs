@@ -1,0 +1,12 @@
+<div class="page">
+  <h2>Passcode</h2>
+
+  <div class="passcode-blocks passcode-length-{{passcodeLength}}">
+    <span class="block block1" ng-tap="focus()"></span>
+    <span class="block block2" ng-tap="focus()"></span>
+    <span class="block block3" ng-tap="focus()"></span>
+    <span class="block block4" ng-tap="focus()"></span>
+  </div>
+
+  <input type="password" class="passcode-input hide" pattern="\d*" ng-model="passcode" autofocus>
+</div>

@@ -1,0 +1,16 @@
+
+<div class="container">
+  <div class="task-wrapper">
+    <header class="task-header">
+      <h2>Habits</h2>
+    </header>
+    <section class="task-body">
+      <ul class="task-list" id="task-list">
+        <% for(var i = 0; i < habits.length; i++){ %> 
+        <li class="task-item"><%= habits[i].name %></li>
+        <% } %>
+      </ul>
+    </section>
+  </div>
+</div>
+
