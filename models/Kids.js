@@ -9,8 +9,8 @@ var kidSchema = new Schema({
     _user: {type: ObjectId, ref: 'Users'},
     avatar: {color: String, icon: String},
     name: String,
-    points: Number,
-    password: String,
+    points: {type: Number, default: 0},
+    passcode: String,
     dateUpdated: String
 });
 

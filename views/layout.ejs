@@ -18,7 +18,8 @@
   <link rel="icon" href="/css/images/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" type="text/css" href="/css/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/css/bootstrap/css/bootstrap-responsive.min.css">
-  <link rel="stylesheet" href="http://i.icomoon.io/public/temp/baba3d39b3/UntitledProject2/style.css">
+
+  <link rel="stylesheet" href="http://i.icomoon.io/public/temp/ee021fb479/UntitledProject2/style.css">
   <link rel="stylesheet" type="text/css" href="/css/diggy-do.css">
   <% if(typeof assets != "undefined" && assets.css) { %>
     <% for(var filename in assets.css) { %>
@@ -26,7 +27,7 @@
     <% } %>
   <% } %>
 </head>
-<body ng-app="dangle" class="container page-{{pageName}}">
+<body ng-app="dangle" class="container page-{{pageName}} modal-{{modal}}">
   <%- include partials/_nav.ejs %>
   <%- include partials/_grabber.ejs %>
   

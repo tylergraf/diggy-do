@@ -1,5 +1,7 @@
 module.exports = function(app){
-
+  // app.get('/homescreen', function(req, res, next) {
+  //   res.render('homescreen');
+  // });
 }
 // module.exports = {
 //   api: require('../models/api.js'),

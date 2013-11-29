@@ -5,21 +5,19 @@
   js: [
     'lib/angular-1.1.5/angular.js',
     'lib/angular-1.1.5/angular-resource.js',
+    'lib/angular-1.1.5/angular-mobile.js',
     'lib/angular-1.1.5/angular-cookies.js',
+    'lib/angularLocalStorage.js',
     'lib/moment.min.js',
     'app.js',
     'services.js',
     'controllers.js',
+    'adminControllers.js',
     'filters.js',
     'directives.js'
   ]
 } %>
-<div class="page-wrapper transition-{{direction}} modal-{{modal}}">
-  <div class="modal-header modal-header-{{headerColor}}">
-    <i class="icon icon-back" ng-tap="navigate('LR',backURL)"></i>
-    <i class="icon icon-{{pageIcon}}"></i>
-    <p class="modal-header-heading">{{pageTitle}}</p>
-  </div>
+<div class="page-wrapper transition-{{direction}}">
   <div ng-view ng-animate="{enter: 'view-enter', leave: 'view-leave'}"></div>
 </div>
 

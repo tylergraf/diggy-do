@@ -9,9 +9,11 @@ angular.module('dangle.directives', [])
     return function(scope, elm, attrs) {
       if (isTouchDevice) {
         var tapping = false;
-        elm.bind('touchstart', function() { tapping = true; });
-        elm.bind('touchmove', function() { tapping = false; });
-        elm.bind('touchend', function() { 
+        elm.bind('touchstart', function(evt) {  tapping = true; });
+        elm.bind('touchmove', function(evt) {  tapping = false; });
+        elm.bind('touchend', function(evt) { 
+          evt.preventDefault();
+          evt.stopPropagation();
           tapping && scope.$apply(attrs.ngTap);
         });
       } else {
@@ -46,7 +48,8 @@ angular.module('dangle.directives', [])
               date = currentDate.unix(),
               url = (id) ? attr.url+'/'+id : attr.url+'/all';
           
-
+          scope.filterExpr = {done: false};
+          console.log(scope.filterExpr);
           scope.feed = (attr.feed === 'true');
           console.log(scope.feed);
           console.log(scope.admin);

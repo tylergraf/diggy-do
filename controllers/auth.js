@@ -4,9 +4,9 @@ var m = require('../lib/middleware.js'),
 
 module.exports = function(app) {
 
-  app.get("/login", function(req, res, next) {
-    res.render('login');
-  });
+  // app.get("/login", function(req, res, next) {
+  //   res.render('login');
+  // });
 
   app.post("/login", function(req, res, next) {
     debug("req.body",req.body);

@@ -4,7 +4,7 @@
 // PAGE CONTROLLERS
 // ****************
 
-function IndexCtrl($scope, $rootScope, $cookieStore, $http) {
+function IndexCtrl($scope, $rootScope, $cookieStore, storage, $http) {
   
   $http.get('/api/kids/').
     success(function(data, status, headers, config) {
@@ -33,26 +33,44 @@ function IndexCtrl($scope, $rootScope, $cookieStore, $http) {
 }
 
 
-function CreateAccountCtrl($scope, $rootScope, $cookieStore, $http) {
-  $scope.createAccount = function(account) {
-    console.log(account);
-    if(account.email && account.password){
+function CreateAccountCtrl($scope, $rootScope, $cookieStore, storage, $http) {
+  $rootScope.modal = true;
+  $rootScope.pageName = 'create-account';
+  $rootScope.pageTitle = 'diggy do';
+  $rootScope.headerColor = 'purple';
+  $rootScope.pageIcon = 'ruby';
+  
+  $scope.c = function(user) {
+    console.log(user);
+    if(typeof user === 'undefined' && user.email && user.password && user.name){ return alert('You must enter a valid name, email, and password.');}
 
-    $http.post('/api/user/new', account).
-        success(function(data, status, headers, config) {
-          window.location = '/';
-        }).
-        error(function(error, status, headers, config) {
-          console.log(error);
-        });
-    }
+      if(!validateEmail(user.email)){ return alert('You must enter a valid email.');}
+
+        $http.post('/api/user/new', {user: user}).
+            success(function(data, status, headers, config) {
+              if(status === 200){
+                storage.set('dd_user',data);
+                $rootScope.navigate('fade','/');
+              }
+            }).
+            error(function(error, status, headers, config) {
+              console.log(error);
+            });
+      
   }
+
+  function validateEmail(email) { 
+    var re = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+    return re.test(email);
+  } 
 }
-function KidsCtrl($scope, $rootScope, $cookieStore, $http, $routeParams) {
+function HomeScreenCtrl($scope, $rootScope, $cookieStore, storage, $http) {
+  
+}
+function KidsCtrl($scope, $rootScope, $cookieStore, storage, $http, $routeParams) {
   if($cookieStore.get('currentKid')) {
     return $rootScope.navigate('fade','/chores');
   }
-  $rootScope.hideMainNav = true;
   $rootScope.pageName = 'login';
   $rootScope.pageTitle = 'diggy do';
   $rootScope.headerColor = 'purple';
@@ -60,7 +78,7 @@ function KidsCtrl($scope, $rootScope, $cookieStore, $http, $routeParams) {
 
   $rootScope.initLogin = function(kid) {
     $rootScope.tempKid = kid;
-    $rootScope.navigate('fade','/passcode');
+    $rootScope.navigate('RL','/passcode');
   };
 
   $http.get('/api/kids/').
@@ -69,11 +87,11 @@ function KidsCtrl($scope, $rootScope, $cookieStore, $http, $routeParams) {
     });
 
 }
-function TasksCtrl($scope, $rootScope, $cookieStore, $http, $routeParams) {
+function TasksCtrl($scope, $rootScope, $cookieStore, storage, $http, $routeParams) {
   if(!$cookieStore.get('currentKid')) {
     return $rootScope.navigate('fade','/');
   }
-  $rootScope.hideMainNav = false;
+  $rootScope.modal = false;
   $rootScope.pageName = 'chores';
   $rootScope.pageTitle = 'diggy do';
   $rootScope.headerColor = 'purple';
@@ -88,7 +106,90 @@ function TasksCtrl($scope, $rootScope, $cookieStore, $http, $routeParams) {
   $rootScope.headerColor = 'purple';
   $rootScope.pageIcon = 'check-mark';
   
-}
+
+  var currentDate = moment(),
+      id = ($cookieStore.get('currentKid')) ? $cookieStore.get('currentKid')._id : null,
+      // property = attr.property,
+      date = currentDate.unix(),
+      url = (id) ? 'api/tasks/'+id : 'api/tasks/all';
+  $scope.filterExpr = {done: false};
+  console.log($scope.filterExpr);
+  console.log($scope.feed);
+  console.log($scope.admin);
+  $scope.day = currentDate.format('dddd');
+
+  $scope.prevDay = function() {
+    currentDate.subtract('days',1);
+    $scope.day = currentDate.format('dddd'),
+    date = currentDate.unix();
+
+    getList($http, url, date);
+
+  }
+  $scope.nextDay = function() {
+    currentDate.add('days',1);
+    $scope.day = currentDate.format('dddd'),
+    date = currentDate.unix();
+
+    getList($http, url, date);
+  }
+  
+  $scope.transact = function(task) {
+    var date = currentDate.unix(),
+        taskIndex = $scope.tasks.indexOf(task);
+
+        console.log(task);
+        
+    if(!task.approved){
+      task.done = (!task.done);
+      if(task.transactionId){
+        $http.delete('/api/transaction/'+task.transactionId,{done: task.done}).
+          success(function(data, status, headers, config) {
+            delete task.transactionId;
+            console.log(task);
+            totalCounts($scope.tasks)
+          });
+      } else {
+        $http.post('/api/transaction/',{date: date, _kid: task._kid, _task: task._id}).
+          success(function(data, status, headers, config) {
+            console.log(data);
+            task.transactionId = data._id;
+            totalCounts($scope.tasks)
+          });
+      }
+    }
+  }
+
+  getList($http, url, date);
+
+  function totalCounts(tasks) {
+    $scope.total = {done: 0, notDone: 0, approved: 0};
+    tasks.forEach(function(t) {
+      if(t.done){
+        $scope.total.done++;
+      } else{
+        $scope.total.notDone++;
+      }
+
+      if(t.approved){$scope.total.approved++}
+
+    });
+  }
+
+  function getList(agent, baseURL, date, done) {
+    var url = baseURL+'/'+date;
+    agent.get(url)
+      .success(function(data, status, headers, config) {
+        $scope.tasks = data;
+        totalCounts(data)
+        
+      })
+      .error(function(error) {
+        done(error);
+      });
+    }
+    
+  }
 
 function getTaskList(agent,id,date, cb) {
   agent.get('/api/tasks/'+id+'/'+date).
@@ -97,7 +198,7 @@ function getTaskList(agent,id,date, cb) {
     });
 }
 
-function CoinsCtrl($scope, $rootScope, $cookieStore, $http, $routeParams) {
+function CoinsCtrl($scope, $rootScope, $cookieStore, storage, $http, $routeParams) {
   if(!$cookieStore.get('currentKid')) {
     return $rootScope.navigate('fade','/');
   }
@@ -119,7 +220,7 @@ function CoinsCtrl($scope, $rootScope, $cookieStore, $http, $routeParams) {
 
     });
 }
-function RewardsCtrl($scope, $rootScope, $cookieStore, $http, $routeParams) {
+function RewardsCtrl($scope, $rootScope, $cookieStore, storage, $http, $routeParams) {
   if(!$cookieStore.get('currentKid')) {
     return $rootScope.navigate('fade','/');
   }
@@ -131,25 +232,29 @@ function RewardsCtrl($scope, $rootScope, $cookieStore, $http, $routeParams) {
 
   
 }
-function ProfileCtrl($scope, $rootScope, $cookieStore, $http, $location, $routeParams) {
+function ProfileCtrl($scope, $rootScope, $cookieStore, storage, $http, $location, $routeParams) {
   if(!$cookieStore.get('currentKid')) {
     return $rootScope.navigate('fade','/');
   }
 
-  $rootScope.hideMainNav = true;
+  $rootScope.backURL = '/chores';
+  $rootScope.modal = true;
   $rootScope.pageName = 'profile';
+  $rootScope.pageTitle = 'Me';
+  $rootScope.headerColor = 'blue';
+  $rootScope.pageIcon = 'profile';
 
-
-
+  $scope.kid = $cookieStore.get('currentKid');
+  console.log($scope.kid);
   
 }
-function PassCodeCtrl($scope, $rootScope, $cookieStore, $http, $location, $routeParams) {
+function PassCodeCtrl($scope, $rootScope, $cookieStore, storage, $http, $location, $routeParams) {
   if(!$rootScope.tempKid) {
     return $rootScope.navigate('fade','/');
   }
 
   $rootScope.pageName = 'passcode';
-  $rootScope.hideMainNav = true;
+  $rootScope.modal = true;
 
   $scope.focus = function() {
     document.querySelector('.passcode-input').focus();
@@ -173,158 +278,64 @@ function PassCodeCtrl($scope, $rootScope, $cookieStore, $http, $location, $route
   
 }
 
+function LoginCtrl($scope, $rootScope, $cookieStore, storage, $http, $location) {
 
-// **********
-// ADMIN CONTROLS
-// **********
-
-function ChoreFeedCtrl($scope, $rootScope, $cookieStore, $http) {
-  if(!$cookieStore.get('currentKid')) {
-    return $rootScope.navigate('fade','/');
-  } else if(!$cookieStore.get('currentKid').admin){
-    return $rootScope.navigate('fade','/chores');
-  }
-
-  $rootScope.modal = false;
-  $rootScope.pageName = 'chore-feed';
-  $rootScope.pageTitle = 'Chore Feed';
-  $rootScope.headerColor = 'red';
-  $rootScope.pageIcon = 'check-mark';
-}
-
-function AddChoreCtrl($scope, $rootScope, $cookieStore, $http) {
-  console.log($cookieStore.get('currentKid').admin);
-  if(!$cookieStore.get('currentKid')) {
-    return $rootScope.navigate('fade','/');
-  } else if(!$cookieStore.get('currentKid').admin){
-    return $rootScope.navigate('fade','/chores');
-  }
-
-  $rootScope.hideMainNav = true;
+  $rootScope.pageName = 'login';
   $rootScope.modal = true;
-  $rootScope.pageName = 'add-chore';
-  $rootScope.pageTitle = 'Add Chore';
-  $rootScope.headerColor = 'red';
-  $rootScope.pageIcon = 'circlePlus';
-
-  $http.get('/api/kids/')
-    .success(function(data, status, headers, config) {
-      $scope.kids = data;
-    });
-
-  $scope.isDisabled = false;
-  
-  $scope.checkIfDisabled = function() {
-    if($scope.task && $scope.task._kid && $scope.task.repeated && $scope.task.value){
-      $scope.isDisabled = false;
-    }
+  var currentUser = storage.get('dd_user');
+  $scope.currentUserExists = (currentUser);
+  if(currentUser){
+    appUserLogin(currentUser);
   }
 
-  $scope.toggleDay = function(day) {
-    if(!$scope.task){$scope.task = {repeated: {}}};
-    if(!$scope.task.repeated){$scope.task.repeated = {}};
-
-    var toggled = document.getElementById(day).classList.toggle('selected');
-    $scope.task.repeated[day] = toggled; 
-
-    $scope.checkIfDisabled();
-  }
-
-  $scope.addTask = function(task) {
-    console.log(task);
-    $http.post('/api/task', task).
-      success(function(data, status, headers, config) {
-        $scope.task = {};
-        $rootScope.navigate('LR','/chore-feed')
+  function appUserLogin(user) {
+    $http.post('/api/appLogin',{email: user.email, id: user.id})
+      .success(function(data, status) {
+        console.log(data);
+        console.log(status);
+        if(status === 200){
+          $rootScope.navigate('fade','/');
+        }
       });
   }
 
-  $scope.back = function() {
-    $scope.task = null;
-    $rootScope.navigate('LR','/admin');
-
-    $scope.checkIfDisabled();
-  }
-  $scope.assignChore = function(kid, e) {
-    if(!$scope.task){$scope.task = {_kid: {}}};
-    var avatars = document.querySelectorAll('.assign-chore-wrapper .avatar');
-    angular.forEach(avatars, function(avatar) {
-      avatar.classList.remove('selected');
-    })
-    document.getElementById(kid._id).classList.add('selected');
-    $scope.task._kid = kid._id;
-    console.log($scope.task._kid);
-
-    $scope.checkIfDisabled();
-  }
-}
-
-function AdminCtrl($scope, $rootScope, $cookieStore, $http, $location, $routeParams) {
-  if(!$cookieStore.get('currentKid')) {
-    return $rootScope.navigate('fade','/');
-  } else if(!$cookieStore.get('currentKid').admin){
-    return $rootScope.navigate('fade','/chores');
-  }
-
-  $rootScope.backURL = '/chore-feed';
-  $rootScope.modal = true;
-  $rootScope.pageName = 'admin';
-  $rootScope.pageTitle = 'Admin';
-  $rootScope.headerColor = 'red';
-  $rootScope.pageIcon = 'settings';
-
-  $scope.focus = function() {
-    document.querySelector('.passcode-input').focus();
-    // angular.element(pcode).focus();
-    // angular.element('.passcode').focus();
-  }
-  $scope.$watch('passcode', function(p) {
-    $scope.passcodeLength = (typeof p === 'undefined') ? 0 : p.length;
-    console.log(p);
-    console.log($scope.passcodeLength);
-    if($scope.passcodeLength === 4){
-      var passcode = $rootScope.tempKid.passcode;
-      console.log($rootScope.tempKid);
-      if($scope.passcode == passcode){
-        $rootScope.login($rootScope.tempKid);
-      }
+  $scope.userLogin = function(user) {
+    if(user && user.email && user.password){
+      $http.post('/api/login',{username: user.email, password: user.password})
+        .success(function(data, status) {
+          console.log(status);
+          if(status === 200){
+            storage.set('dd_user',data);
+            $rootScope.navigate('fade','/');
+          }
+        });
     }
-  });
-
-
-  
-}
-function AdminChoresCtrl($scope, $rootScope, $cookieStore, $http, $location, $routeParams) {
-  if(!$cookieStore.get('currentKid')) {
-    return $rootScope.navigate('fade','/');
-  } else if(!$cookieStore.get('currentKid').admin){
-    return $rootScope.navigate('fade','/chores');
   }
-
-  $rootScope.modal = true;
-  $rootScope.backURL = '/admin';
-  $rootScope.pageName = 'admin-chores';
-  $rootScope.pageTitle = 'Chores';
-  $rootScope.headerColor = 'red';
-  $rootScope.pageIcon = null;
-  
-  $http.get('/api/tasks/all')
-    .success(function(data, status, headers, config) {
-        $scope.tasks = data;
-      });
-
-
-
 }
 
+function ChooseAvatarCtrl($scope, $rootScope, $cookieStore, storage, $http, $location) {
+
+  $rootScope.backURL = '/admin-add-kid';
+  $rootScope.modal = true;
+  $rootScope.pageName = 'choose-avatar';
+  $rootScope.pageTitle = 'Choose Avatar';
+  $rootScope.headerColor = 'red';
+  $rootScope.pageIcon = 'profile';
+
+  $scope.chooseAvatar = function(icon) {
+    $rootScope.tempKid.avatar = {icon: icon, color: 'grey'};
+    $rootScope.navigate('TB',$rootScope.backURL);
+  }
+}
 
 // **********
 // COMPONENTS
 // **********
 
-function navCtrl($scope, $rootScope, $cookieStore, $http, $location) {
+function navCtrl($scope, $rootScope, $cookieStore, storage, $http, $location) {
   $rootScope.direction = 'fade';
-  $rootScope.navigate = function(direction, path) {
+  $rootScope.navigate = function(direction, path, backURL) {
+    $rootScope.backURL = (backURL) ? backURL : $rootScope.backURL;
     $rootScope.direction = direction;
     $location.path(path);
   };
@@ -342,7 +353,7 @@ function navCtrl($scope, $rootScope, $cookieStore, $http, $location) {
     if(kid.admin){
       $rootScope.grabberLabel = 'Admin';
       $rootScope.grabberURL = '/admin';
-      $rootScope.navigate('fade','/chore-feed');
+      $rootScope.navigate('fade','/admin-chore-feed');
     } else {
       $rootScope.grabberLabel = 'Me';
       $rootScope.grabberURL = '/profile';
@@ -353,9 +364,16 @@ function navCtrl($scope, $rootScope, $cookieStore, $http, $location) {
     $cookieStore.remove('currentKid'); 
     $rootScope.navigate('fade','/');
   };
+  $rootScope.logOutCompletely = function() {
+    // console.log($cookieStore.get('connect.sid'));
+    $cookieStore.remove('currentKid'); 
+    $cookieStore.remove('connect.sid'); 
+    storage.clearAll();
+    $rootScope.navigate('fade','/login');
+  };
 }
 
-function grabberCtrl($scope, $rootScope, $cookieStore, $http) {
+function grabberCtrl($scope, $rootScope, $cookieStore, storage, $http) {
   $scope.grabberToggle = false;
   $scope.toggleGrabber = function() {
     $scope.grabberToggle = (!$scope.grabberToggle);
@@ -366,7 +384,7 @@ function grabberCtrl($scope, $rootScope, $cookieStore, $http) {
     if(currentKid.admin){
       $rootScope.grabberLabel = 'Admin';
       $rootScope.grabberURL = '/admin';
-      // $rootScope.navigate('fade','/chore-feed');
+      // $rootScope.navigate('fade','/admin-chore-feed');
     } else {
       $rootScope.grabberLabel = 'Me';
       $rootScope.grabberURL = '/profile';
@@ -374,7 +392,7 @@ function grabberCtrl($scope, $rootScope, $cookieStore, $http) {
     }
   }
 }
-// function transactionsController($scope, $rootScope, $cookieStore, $http) {
+// function transactionsController($scope, $rootScope, $cookieStore, storage, $http) {
 //   $http.get('/api/transactions').
 //     success(function(data, status, headers, config) {
 //       $scope.transactions = data;

@@ -1,0 +1,12 @@
+<div class="page page-view-admin-kids">
+  <%- include _modal-header.ejs %>
+  <h3 class="heading-1">admin kids</h3>
+  <a ng-tap="navigate('RL','/admin-add-kid','/admin-kids')" class="btn btn-green">Add Kid</a>
+  
+  <ul class="unstyled table-list">
+    <li class="table-list-item" ng-repeat="kid in kids">
+      <span class="avatar avatar-{{kid.avatar.color}}"><i class="icon icon-{{kid.avatar.icon}}"></i></span>
+      <span class="item-label">{{kid.name}}</span>
+    </li>
+  </ul>
+</div>

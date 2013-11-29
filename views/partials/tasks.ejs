@@ -1,10 +1,19 @@
-<div class="day-viewer page" day-viewer property="tasks" feed="" url="/api/tasks"></div>
-<!-- <a href="#" class="prev" ng-tap="prevDay()">PREV</a>
-<p>{{day}}</p>
-<a href="#" class="next" ng-tap="nextDay()">NEXT</a>
-
-<ul class="task-list">
-  <li ng-repeat="task in tasks" class="task-list-item">
-    <a href="#" ng-tap="transact(task._id,task._kid,task.transactionId,$index)" class="done-{{task.done}}">{{task.name}}</a> <span class="approved-{{task.approved}}">approved</span>
-  </li>
-</ul> -->
+<!-- <div class="day-viewer page" day-viewer property="tasks" feed="" url="/api/tasks"></div> -->
+<div class="day-view">
+  <header class="header">
+    <a href="#" class="next" ng-tap="nextDay()">&#9654;</a>
+    <a href="#" class="prev" ng-tap="prevDay()">&#9664;</a>
+    <p class="day">{{day}}</p>
+  </header>
+  <div class="totals">
+    <div class="approved sorter" ng-tap="filterExpr = null;"><strong>all</strong>({{total.approved}})</div>
+    <div class="done sorter" ng-tap="filterExpr = {done: true};"><strong>done</strong>({{total.done}})</div>
+    <div class="not-done sorter" ng-tap="filterExpr = {done: false};"><strong>not done</strong>({{total.notDone}})</div>
+  </div>
+    <ul class="unstyled table-list task-list">
+      <li ng-repeat="task in tasks | filter:filterExpr" class="table-list-item task-list-item approved-{{task.approved}}" ng-swipe-right="transact(task)" ng-swipe-left="transact(task)">
+        <span class="value">{{task.value}}</span>
+        <span class="done-{{task.done}}">{{task.name}}</span> <span class="approved-{{task.approved}}">approved</span>
+      </li>
+    </ul>
+</div>

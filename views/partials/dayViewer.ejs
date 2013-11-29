@@ -5,9 +5,9 @@
     <p class="day">{{day}}</p>
   </header>
   <div class="totals">
-    <div class="approved"><strong>approved</strong>({{total.approved}})</div>
-    <div class="done"><strong>done</strong>({{total.done}})</div>
-    <div class="not-done"><strong>not done</strong>({{total.notDone}})</div>
+    <div class="approved sorter" ng-tap="filterExpr = null;"><strong>all</strong>({{total.approved}})</div>
+    <div class="done sorter" ng-tap="filterExpr = {done: true};"><strong>done</strong>({{total.done}})</div>
+    <div class="not-done sorter" ng-tap="filterExpr = {done: false};"><strong>not done</strong>({{total.notDone}})</div>
   </div>
     <ul class="unstyled chore-feed hide">
       <li ng-repeat="task in tasks" class="task-list-item">
@@ -18,9 +18,9 @@
       </li>
     </ul>
     <ul class="unstyled task-list hide">
-      <li ng-repeat="task in tasks" class="task-list-item">
+      <li ng-repeat="task in tasks | orderBy:'+done' | filter:filterExpr" class="task-list-item" ng-swipe-right="transact(task._id,task._kid,task.transactionId,$index)">
         <span class="value">{{task.value}}</span>
-        <a href="#" ng-tap="transact(task._id,task._kid,task.transactionId,$index)" class="done-{{task.done}}">{{task.name}}</a> <span class="approved-{{task.approved}}">approved</span>
+        <span class="done-{{task.done}}">{{task.name}}</span> <span class="approved-{{task.approved}}">approved</span>
       </li>
     </ul>
 </div>

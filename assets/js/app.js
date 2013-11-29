@@ -1,12 +1,29 @@
 'use strict';
-
+// (function() {
+//   if (!window.navigator.standalone) {
+//     // in full screen
+//     // if(window.location.path !== '')
+//     console.log(window.location.pathname === '/homscreen');
+//     if(window.location.pathname !== '/homscreen'){
+//       // window.location = '/homescreen';
+//     }
+//   } 
+// })()
 // Declare app level module which depends on filters, and services
-angular.module('dangle', ['dangle.filters', 'dangle.services', 'dangle.directives','ngCookies']).
+angular.module('dangle', ['dangle.filters', 'dangle.services', 'dangle.directives','ngMobile','ngCookies','angularLocalStorage']).
   config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider.
       when('/', {
         templateUrl: '/partials/kids',
         controller: KidsCtrl
+      }).
+      when('/homescreen', {
+        templateUrl: '/partials/homescreen',
+        controller: HomeScreenCtrl
+      }).
+      when('/choose-avatar', {
+        templateUrl: '/partials/choose-avatar',
+        controller: ChooseAvatarCtrl
       }).
       when('/index', {
         templateUrl: '/partials/index',
@@ -57,16 +74,42 @@ angular.module('dangle', ['dangle.filters', 'dangle.services', 'dangle.directive
         templateUrl: '/partials/admin-chores',
         controller: AdminChoresCtrl
       }).
+      when('/admin-kids', {
+        templateUrl: '/partials/admin-kids',
+        controller: AdminKidsCtrl
+      }).
+      when('/admin-rewards', {
+        templateUrl: '/partials/admin-rewards',
+        controller: AdminRewardsCtrl
+      }).
       when('/admin-add-chore', {
-        templateUrl: '/partials/add-chore',
+        templateUrl: '/partials/admin-add-chore',
         controller: AddChoreCtrl
+      }).
+      when('/admin-add-kid', {
+        templateUrl: '/partials/admin-add-kid',
+        controller: AddKidCtrl
+      }).
+      when('/admin-add-reward', {
+        templateUrl: '/partials/admin-add-reward',
+        controller: AddRewardCtrl
+      }).
+      when('/login', {
+        templateUrl: '/partials/login',
+        controller: LoginCtrl
       }).
       otherwise({
         redirectTo: '/'
       });
     $locationProvider.html5Mode(true);
-  }]);
-
+  }])
+  .run(function($route, $http, $templateCache) {
+    angular.forEach($route.routes, function(r) {
+      if (r.templateUrl) { 
+        $http.get(r.templateUrl, {cache: $templateCache});
+      }
+    });
+  });
 angular.module('ng').run(['$rootScope', function($rootScope) {
     $rootScope.safeApply = function(fn) {
         var phase = this.$root.$$phase;

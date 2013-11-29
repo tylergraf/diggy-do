@@ -1,6 +1,7 @@
-<div class="page">
+<div class="page page-view-admin-chores">
+  <%- include _modal-header.ejs %>
   <section class="admin-chores-header">
-    <a class="btn btn-green"><i class="icon icon-plus"></i></a>
+    <a class="btn btn-green" ng-tap="navigate('RL','/admin-add-chore','/admin-chores')"><i class="icon icon-plus"></i></a>
     <h3>Add New Chore</h3>
   </section>
   <section class="admin-chores-filter">
@@ -9,7 +10,7 @@
   </section>
   <section class="admin-chores">
     <ul class="unstyled task-list">
-      <li ng-repeat="task in tasks" class="task-list-item">
+      <li ng-repeat="task in tasks | orderBy:'+_kid._id'" class="task-list-item">
         <span class="avatar avatar-{{task._kid.avatar.color}}"><i class="icon icon-{{task._kid.avatar.icon}}"></i></span>
         <span class="task-name">{{task.name}}</span>
         <span class="task-list-bottom">

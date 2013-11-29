@@ -1,0 +1,15 @@
+<div class="page hide hide-if-user-{{currentUserExists}}">
+  <h2 class="heading-1">Login</h2>
+  <form ng-submit="userLogin(user)" class="form form-login">
+    <!-- <label>Email:</label> -->
+    <div class="input-wrapper">
+      <input type="text" ng-model="user.email" autofocus autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Email">
+    </div>
+    <!-- <label>Password:</label> -->
+    <div class="input-wrapper">
+      <input type="password" ng-model="user.password" placeholder="Password">
+    </div>
+    <p><button class="btn btn-green" type="submit">Login</button></p>
+  </form>
+  <p><a ng-tap="navigate('fade','/create-account')">Create an Account</a></p>
+</div>

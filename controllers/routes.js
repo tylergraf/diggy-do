@@ -5,6 +5,7 @@ var m = require('../lib/middleware.js');
 
 var angularRoutes = [
   '/',
+  '/homescreen',
   '/kids',
   '/chores',
   '/chores/:id',
@@ -13,11 +14,16 @@ var angularRoutes = [
   '/rewards',
   '/profile',
   '/passcode',
+  '/choose-avatar',
 
   // ADMIN ROUTES
   '/admin',
   '/admin-chores',
+  '/admin-kids',
+  '/admin-rewards',
   '/admin-add-chore',
+  '/admin-add-kid',
+  '/admin-add-reward',
   '/admin-chore-feed'
 ];
 module.exports = function(app) {
@@ -26,8 +32,11 @@ module.exports = function(app) {
       res.render('angular', {user: req.user});
     });
   });
+  app.get('/login', function(req, res, next) {
+    res.render('angular');
+  });
   app.get('/create-account', function(req, res, next) {
-    res.render('angular', {user: req.user});
+    res.render('angular');
   });
   
 }

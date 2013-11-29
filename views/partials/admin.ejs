@@ -1,19 +1,20 @@
 <div class="page">
+  <%- include _modal-header.ejs %>
   <section class="admin-dashboard-section">
-    <a ng-tap="navigate('RL','/admin-chores')" class="dashboard-list-item">
+    <a ng-tap="navigate('RL','/admin-chores','/admin')" class="dashboard-list-item">
       <i class="icon icon-forward"></i>
       <span class="column-1">Chores</span>
-      <span class="column-2">152</span>
+      <span class="column-2">{{choreCount}}</span>
     </a>
-    <a ng-tap="navigate('RL','/admin-rewards')" class="dashboard-list-item">
+    <a ng-tap="navigate('RL','/admin-rewards','/admin')" class="dashboard-list-item">
       <i class="icon icon-forward"></i>
       <span class="column-1">Rewards</span>
-      <span class="column-2">40</span>
+      <span class="column-2">{{rewardCount}}</span>
     </a>
-    <a ng-tap="navigate('RL','/admin-kids')" class="dashboard-list-item">
+    <a ng-tap="navigate('RL','/admin-kids','/admin')" class="dashboard-list-item">
       <i class="icon icon-forward"></i>
       <span class="column-1">Kids</span>
-      <span class="column-2">3</span>
+      <span class="column-2">{{kidCount}}</span>
     </a>
   </section>
   <section class="admin-dashboard-section">
@@ -38,6 +39,7 @@
       <i class="icon icon-forward"></i>
       <span class="column-1">Options</span>
     </a>
-  <p><a class="btn btn-red"><i class="icon icon-exit"></i>Log Out</a></p>
+  <p><a class="btn btn-red btn-full" ng-tap="logOut()"><i class="icon icon-exit"></i>Log Out</a></p>
+  <p><a class="btn btn-red btn-full" ng-tap="logOutCompletely()"><i class="icon icon-exit"></i>Log Out Completely</a></p>
   <!-- <p><a class="btn btn-blue" ng-tap="navigate('RL','/add-chore')">Add Chores</a></p> -->
 </div>

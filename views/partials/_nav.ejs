@@ -7,14 +7,14 @@
       <a class="icon-only" ng-tap="navigate('RL','/rewards');toggleNav()"><i class="icon icon-reward"></i></a>
     </nav>
     <div class="main-heading header-{{headerColor}}">
-      <i class="icon icon-toggle-down" ng-tap="toggleSubNav()"></i>
-      <i class="icon icon-nav" ng-tap="toggleNav()"></i>
+      <!-- <i class="icon icon-toggle-down" ng-tap="toggleSubNav()"></i> -->
+      <i class="icon icon-grabber" ng-tap="toggleNav()"></i>
       <i class="icon icon-{{pageIcon}}"></i>
       <h2>{{pageTitle}}</h2>
     </div>
     <div class="main-sub-header header-green">
       <i class="icon icon-toggle-up" ng-tap="toggleSubNav()"></i>
-      <a href="{{subNavItem.link}}" ng-tap="toggleSubNav()" ng-repeat="subNavItem in subNavItems"><i class="icon icon-{{subNavItem.icon}}"></i>{{subNavItem.title}}</a>
+      <a href="{{subNavItem.link}}" ng-tap="toggleSubNav()" ng-repeat="subNavItem in subNavItems" class="subnav-item"><i class="icon icon-{{subNavItem.icon}}"></i>{{subNavItem.title}}</a>
     </div>
   </header>
 </div>

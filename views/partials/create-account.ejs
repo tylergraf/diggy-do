@@ -1,9 +1,27 @@
-<h2>Create Account</h2>
-<form class="form" ng-submit="createAccount(account)">
-  <label>Email:</label>
-  <input type="text" ng-model="account.email">
-  <label>Password:</label>
-  <input type="password" ng-model="account.password">
+<div class="page hide hide-if-user-{{currentUserExists}}">
+  <h1 class="heading-1">Create Account</h1>
+  <form ng-submit="c(user)" class="form form-create-account">
+    <div class="input-wrapper">
+      <input type="text" ng-model="user.name" placeholder="Name (What your kids call you)">
+    </div>
+    <div class="input-wrapper">
+      <input type="text" ng-model="user.email" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Email">
+    </div>
+    <div class="input-wrapper">
+      <input type="password" ng-model="user.password" placeholder="Password">
+    </div>
+    <p><button class="btn btn-green" type="submit">Create Account</button></p>
+  </form>
+<!-- <form class="form form-create-account" ng-submit="c(account)">
+  <div class="input-wrapper">
+    <input type="text" ng-model="account.name" placeholder="Name (What your kids call you)">
+  </div>
+  <div class="input-wrapper">
+    <input type="text" ng-model="account.email" placeholder="Email">
+  </div>
+  <div class="input-wrapper">
+    <input type="password" ng-model="account.password" placeholder="Password">
+  </div>
   <p><button class="btn" type="submit">Create Account</button></p>
-</form>
+</form> -->
 <p><a href="/login">Login</a></p>

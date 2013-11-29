@@ -1,6 +1,10 @@
 <div class="page">
-  <h2>Passcode</h2>
-
+  <p class="passcode-cancel" ng-tap="navigate('LR','/')">Cancel</p>
+  <h2 class="heading-1">Passcode</h2>
+  <section class="passcode-header">
+    <div class="avatar avatar-{{tempKid.avatar.color}}"><i class="icon icon-{{tempKid.avatar.icon}}"></i></div>
+    <h3>{{tempKid.name}}</h3>
+  </section>
   <div class="passcode-blocks passcode-length-{{passcodeLength}}">
     <span class="block block1" ng-tap="focus()"></span>
     <span class="block block2" ng-tap="focus()"></span>

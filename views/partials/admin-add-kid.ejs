@@ -1,0 +1,15 @@
+<div class="page page-view-admin-add-kid">
+  <%- include _modal-header.ejs %>
+  <h3 class="heading-1">Add kid</h3>
+  <form ng-submit="addKid(kid)" class="form form-add-kid">
+    <div class="input-wrapper">
+      <input type="text" ng-model="kid.name" placeholder="Child's name">
+    </div>
+    <div class="input-wrapper">
+      <input type="password" ng-model="kid.passcode" maxlength="4" pattern="\d*" placeholder="Enter a simple passcode (4 numbers long)">
+    </div>
+    <span ng-tap="goToAvatar(kid)" class="btn btn-green">Set Avatar</span>
+    <button type="submit" class="btn btn-green">Add Kid</button>
+
+  </form>
+</div>
