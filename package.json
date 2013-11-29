@@ -4,7 +4,7 @@
     "name": "Tyler Graf",
     "email": "tylergraf@gmail.com"
   },
-  "version": "0.1",
+  "version": "0.0.1",
   "dependencies": {
     "express": "~3.1.1",
     "ejs": "0.8.3",
