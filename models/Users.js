@@ -4,8 +4,8 @@ var mongoose = require('mongoose'),
 
 var userSchema = new Schema({
     id: ObjectId,
-    name: String,
-    avatar: {color: String, icon: String, img: String},
+    name: {type: String, default: 'Parent'},
+    avatar: {color: {type: String, default: 'green'}, icon: {type: String, default: 'band-aid'}, img: String},
     email: String,
     password: String,
     tasks: [module.exports.taskSchema],

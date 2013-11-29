@@ -18,10 +18,9 @@ module.exports = function(app) {
       else {
         req.logIn(user, function(err) {
           if (err) { return next(err); }
-          res.json({
-            email: user.email,
-            id: user.id
-          });
+          user.password = null;
+          delete user.password;
+          res.json(user);
         });
       }
 
@@ -34,14 +33,14 @@ module.exports = function(app) {
     u.findByEmail(req.body.email, function(err, user) {
       if (err) { return done(err); }
       if (!user) { return next({status: 404, message: 'no user found'}); }
+          console.log(user);
 
       if(req.body.id == user.id){
         req.logIn(user, function(err) {
           if (err) { return next(err); }
-          res.json({
-            email: user.email,
-            id: user.id
-          });
+          user.password = null;
+          delete user.password;
+          res.json(user);
         });
       } else {
         return next({status: 400, message: 'wrong id'})

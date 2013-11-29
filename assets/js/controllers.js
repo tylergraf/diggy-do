@@ -8,7 +8,9 @@ function IndexCtrl($scope, $rootScope, $cookieStore, storage, $http) {
   
   $http.get('/api/kids/').
     success(function(data, status, headers, config) {
-      $scope.kids = data;
+      // $scope.kids = data;
+      console.log(data);
+      $scope.kids.push({admin: true, passcode: '0000', name: 'Mom', _id: 'all'});
     });
 
   $scope.addKid = function() {
@@ -42,20 +44,21 @@ function CreateAccountCtrl($scope, $rootScope, $cookieStore, storage, $http) {
   
   $scope.c = function(user) {
     console.log(user);
-    if(typeof user === 'undefined' && user.email && user.password && user.name){ return alert('You must enter a valid name, email, and password.');}
+    if(typeof user === 'undefined'){ return alert('You must enter a valid name, email, and password.');}
+    if(!user.email || !user.password || !user.name){ return alert('You must enter a valid name, email, and password.');}
 
-      if(!validateEmail(user.email)){ return alert('You must enter a valid email.');}
+    if(!validateEmail(user.email)){ return alert('You must enter a valid email.');}
 
-        $http.post('/api/user/new', {user: user}).
-            success(function(data, status, headers, config) {
-              if(status === 200){
-                storage.set('dd_user',data);
-                $rootScope.navigate('fade','/');
-              }
-            }).
-            error(function(error, status, headers, config) {
-              console.log(error);
-            });
+      $http.post('/api/user/new', {user: user}).
+          success(function(data, status, headers, config) {
+            if(status === 200){
+              storage.set('dd_user',data);
+              $rootScope.navigate('fade','/');
+            }
+          }).
+          error(function(err, status, headers, config) {
+            alert(err.message)
+          });
       
   }
 
@@ -83,7 +86,11 @@ function KidsCtrl($scope, $rootScope, $cookieStore, storage, $http, $routeParams
 
   $http.get('/api/kids/').
     success(function(data, status, headers, config) {
+      if(data.length === 0){$rootScope.navigate('RL','/welcome') }
       $scope.kids = data;
+      var admin = storage.get('dd_user');
+      admin.passcode = '0000';
+      $scope.kids.push(admin);
     });
 
 }
@@ -187,6 +194,7 @@ function TasksCtrl($scope, $rootScope, $cookieStore, storage, $http, $routeParam
       .error(function(error) {
         done(error);
       });
+
     }
     
   }
@@ -289,10 +297,9 @@ function LoginCtrl($scope, $rootScope, $cookieStore, storage, $http, $location) 
   }
 
   function appUserLogin(user) {
+
     $http.post('/api/appLogin',{email: user.email, id: user.id})
       .success(function(data, status) {
-        console.log(data);
-        console.log(status);
         if(status === 200){
           $rootScope.navigate('fade','/');
         }
@@ -300,16 +307,19 @@ function LoginCtrl($scope, $rootScope, $cookieStore, storage, $http, $location) 
   }
 
   $scope.userLogin = function(user) {
-    if(user && user.email && user.password){
-      $http.post('/api/login',{username: user.email, password: user.password})
-        .success(function(data, status) {
-          console.log(status);
-          if(status === 200){
-            storage.set('dd_user',data);
-            $rootScope.navigate('fade','/');
-          }
-        });
-    }
+    if(typeof user === 'undefined'){return alert('Please enter email and password');}
+    if(!user.email && !user.password){return alert('Please enter email and password');}
+
+    $http.post('/api/login',{username: user.email, password: user.password})
+      .success(function(data, status) {
+        if(status === 200){
+          storage.set('dd_user',data);
+          $rootScope.navigate('fade','/');
+        }
+      })
+      .error(function(err) {
+        alert(err.message);
+      });
   }
 }
 

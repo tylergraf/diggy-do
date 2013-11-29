@@ -20,7 +20,7 @@ module.exports = function(app) {
       
       delete req.body;
       req.body = {username: user.email, password: user.password};
-      
+
       p.authenticate('local', function(err, user) {
         debug('err',err);
         debug('user',user);
@@ -30,10 +30,9 @@ module.exports = function(app) {
         else {
           req.logIn(user, function(err) {
             if (err) { return next(err); }
-            res.json({
-              email: user.email,
-              id: user.id
-            });
+            user.password = null;
+            delete user.password;
+            res.json(user);
           });
         }
 

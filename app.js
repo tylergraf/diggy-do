@@ -41,7 +41,7 @@ app.configure(function(){
   app.use(express.cookieParser());
   app.use(express.session(
     {
-      secret: 'even the secrets',
+      secret: process.env.SESSION_SECRET,
       store: new MongoStore({
         mongoose_connection: mongoose.connections[0]
       }),

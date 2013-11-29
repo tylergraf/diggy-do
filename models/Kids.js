@@ -7,7 +7,7 @@ var mongoose = require('mongoose')
 var kidSchema = new Schema({
     id: ObjectId,
     _user: {type: ObjectId, ref: 'Users'},
-    avatar: {color: String, icon: String},
+    avatar: {color: {type: String, default: 'red'}, icon: {type: String, default: 'headphones'}, img: String},
     name: String,
     points: {type: Number, default: 0},
     passcode: String,
