@@ -1,0 +1,250 @@
+@font-face {
+	font-family: 'diggy-do';
+	src:url('../fonts/diggy-do/diggy-do.eot');
+	src:url('../fonts/diggy-do/diggy-do.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/diggy-do/diggy-do.ttf') format('truetype'),
+		url('../fonts/diggy-do/diggy-do.woff') format('woff'),
+		url('../fonts/diggy-do/diggy-do.svg#diggy-do') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'diggy-do';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-x:before {
+	content: "\e600";
+}
+.icon-toggle-up:before {
+	content: "\e601";
+}
+.icon-toggle-down:before {
+	content: "\e602";
+}
+.icon-tank:before {
+	content: "\e603";
+}
+.icon-star:before {
+	content: "\e604";
+}
+.icon-settings:before {
+	content: "\e605";
+}
+.icon-ruby:before {
+	content: "\e606";
+}
+.icon-reward:before {
+	content: "\e607";
+}
+.icon-repeat-square:before {
+	content: "\e608";
+}
+.icon-repeat-round:before {
+	content: "\e609";
+}
+.icon-remind:before {
+	content: "\e60a";
+}
+.icon-redeem:before {
+	content: "\e60b";
+}
+.icon-profile:before {
+	content: "\e60c";
+}
+.icon-nav:before {
+	content: "\e60d";
+}
+.icon-lock:before {
+	content: "\e60e";
+}
+.icon-headphones:before {
+	content: "\e60f";
+}
+.icon-grabber:before {
+	content: "\e610";
+}
+.icon-flask:before {
+	content: "\e611";
+}
+.icon-edit:before {
+	content: "\e612";
+}
+.icon-comments:before {
+	content: "\e613";
+}
+.icon-coins:before {
+	content: "\e614";
+}
+.icon-circlePlus:before {
+	content: "\e615";
+}
+.icon-check:before {
+	content: "\e616";
+}
+.icon-check-mark:before {
+	content: "\e617";
+}
+.icon-calendar:before {
+	content: "\e618";
+}
+.icon-band-aid:before {
+	content: "\e619";
+}
+.icon-back:before {
+	content: "\e61a";
+}
+.icon-arrow-right:before {
+	content: "\e61b";
+}
+.icon-arrow-left:before {
+	content: "\e61c";
+}
+.icon-add:before {
+	content: "\e61d";
+}
+.icon-lady-bug:before {
+	content: "\e61e";
+}
+.icon-exit:before {
+	content: "\e61f";
+}
+.icon-forward:before {
+	content: "\e620";
+}
+.icon-plus:before {
+	content: "\e621";
+}
+.icon-settings-2:before {
+	content: "\e622";
+}
+.icon-flag:before {
+	content: "\e623";
+}
+.icon-truck:before {
+	content: "\e624";
+}
+.icon-airplane:before {
+	content: "\e625";
+}
+.icon-briefcase:before {
+	content: "\e626";
+}
+.icon-accessibility:before {
+	content: "\e627";
+}
+.icon-lightning:before {
+	content: "\e628";
+}
+.icon-shield:before {
+	content: "\e629";
+}
+.icon-target:before {
+	content: "\e62a";
+}
+.icon-power-cord:before {
+	content: "\e62b";
+}
+.icon-lab:before {
+	content: "\e62c";
+}
+.icon-fire:before {
+	content: "\e62d";
+}
+.icon-hammer:before {
+	content: "\e62e";
+}
+.icon-rocket:before {
+	content: "\e62f";
+}
+.icon-meter:before {
+	content: "\e630";
+}
+.icon-meter2:before {
+	content: "\e631";
+}
+.icon-leaf:before {
+	content: "\e632";
+}
+.icon-mug:before {
+	content: "\e633";
+}
+.icon-hammer2:before {
+	content: "\e634";
+}
+.icon-aid:before {
+	content: "\e635";
+}
+.icon-bug:before {
+	content: "\e636";
+}
+.icon-gift:before {
+	content: "\e637";
+}
+.icon-trophy:before {
+	content: "\e638";
+}
+.icon-library:before {
+	content: "\e639";
+}
+.icon-pacman:before {
+	content: "\e63a";
+}
+.icon-spades:before {
+	content: "\e63b";
+}
+.icon-droplet:before {
+	content: "\e63c";
+}
+.icon-quill:before {
+	content: "\e63d";
+}
+.icon-pencil:before {
+	content: "\e63e";
+}
+.icon-clubs:before {
+	content: "\e63f";
+}
+.icon-diamonds:before {
+	content: "\e640";
+}
+.icon-bullhorn:before {
+	content: "\e641";
+}
+.icon-phone:before {
+	content: "\e642";
+}
+.icon-key:before {
+	content: "\e643";
+}
+.icon-key2:before {
+	content: "\e644";
+}
+.icon-binoculars:before {
+	content: "\e645";
+}
+.icon-bell:before {
+	content: "\e646";
+}
+.icon-alarm:before {
+	content: "\e647";
+}
+.icon-cart:before {
+	content: "\e648";
+}
+.icon-music:before {
+	content: "\e649";
+}
+.icon-headphones:before {
+	content: "\e64a";
+}

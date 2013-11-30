@@ -86,10 +86,11 @@ function KidsCtrl($scope, $rootScope, $cookieStore, storage, $http, $routeParams
 
   $http.get('/api/kids/').
     success(function(data, status, headers, config) {
-      if(data.length === 0){$rootScope.navigate('RL','/welcome') }
+      // if(data.length === 0){$rootScope.navigate('RL','/welcome') }
       $scope.kids = data;
       var admin = storage.get('dd_user');
       admin.passcode = '0000';
+      admin.admin = true;
       $scope.kids.push(admin);
     });
 
