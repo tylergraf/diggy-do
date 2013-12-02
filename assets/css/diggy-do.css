@@ -324,6 +324,12 @@ input[type=password]:focus {
 .icon {
   /*font-family: 'diggy-do';*/
 }
+.form .form-actions {
+  margin-left: 10px;
+  padding: 0;
+  background: none;
+  border: none;
+}
 .sorter {
   cursor: pointer;
 }
@@ -599,6 +605,7 @@ input[type=password]:focus {
   height: 60px;
   padding: 0 10px;
   background: #fff;
+  line-height: 60px;
 }
 .table-list .table-list-item .item-label {
   line-height: 60px;
@@ -929,6 +936,44 @@ input[type=password]:focus {
 .page-admin-add-kid {
   background: #bbbdc0;
 }
+.form-add-kid input[type=radio] {
+  display: none;
+}
+.form-add-kid .avatar .icon.icon-check {
+  display: none;
+}
+.form-add-kid input[type=radio]:checked + .avatar .icon.icon-check {
+  display: block;
+}
+.form-add-kid .input-wrapper {
+  margin: 10px;
+}
+.form-add-kid .form-actions {
+  margin-left: 10px;
+  padding: none;
+  background: none;
+  border: none;
+}
+.form-add-kid .avatar-color-label {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.form-add-kid .avatar-color {
+  display: -webkit-flex;
+  -webkit-flex-wrap: wrap;
+}
+.form-add-kid .avatar {
+  height: 35px;
+  width: 35px;
+  margin-bottom: 10px;
+  margin-right: 0px;
+  margin-left: 10px;
+}
+.form-add-kid .avatar .icon{
+  line-height: 35px;
+  font-size: 20px;
+}
+
 
 /*.enter-setup {   position:absolute;   -webkit-transition: 0.5s ease-out all;   -webkit-transform:translate3d(100%,0,0)  }  .enter-setup.enter-start {   position:absolute;  -webkit-transform:translate3d(0,0,0)}  .leave-setup {   position:absolute;   -webkit-transition: 0.5s ease-out all;   -webkit-transform:translate3d(0,0,0)} .leave-setup.leave-start {   position:absolute;  -webkit-transform:translate3d(-100%,0,0) };*/
 

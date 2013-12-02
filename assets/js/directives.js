@@ -133,6 +133,27 @@ angular.module('dangle.directives', [])
         }
     };
   })
+.directive("chooseAvatar", function() {
+  return {
+    restrict: 'A',
+    templateUrl: '/partials/choose-avatar',
+    replace: false,
+    link: function($scope, $element, $attributes) {
+      $scope.chooseAvatar = function(icon, event) {
+        if($scope.kid && $scope.kid.avatar){
+          $scope.kid.avatar.icon = icon;
+        } else if($scope.kid) {
+          $scope.kid.avatar = {icon: icon};
+        } else {
+          $scope.kid = {avatar: {icon: icon}};
+        }
+        console.log(event);
+        // $element.find('.icon').removeClass('selected');
+        $element.find('.icon').removeClass('selected');
+      }
+    }
+  }
+});
 // .directive("ngTap", function() {
 //   return function($scope, $element, $attributes) {
 //     var tapped;

@@ -1,50 +1,47 @@
-<div class="page">
-  <%- include _modal-header.ejs %>
-  <div class="avatars-wrapper">
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('icon-flag')"><i class="icon icon-flag"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('truck')"><i class="icon icon-truck"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('airplane')"><i class="icon icon-airplane"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('briefcase')"><i class="icon icon-briefcase"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('accessibility')"><i class="icon icon-accessibility"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('lightning')"><i class="icon icon-lightning"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('shield')"><i class="icon icon-shield"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('target')"><i class="icon icon-target"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('power-cord')"><i class="icon icon-power-cord"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('lab')"><i class="icon icon-lab"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('fire')"><i class="icon icon-fire"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('hammer')"><i class="icon icon-hammer"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('rocket')"><i class="icon icon-rocket"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('meter')"><i class="icon icon-meter"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('meter2')"><i class="icon icon-meter2"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('leaf')"><i class="icon icon-leaf"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('mug')"><i class="icon icon-mug"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('hammer2')"><i class="icon icon-hammer2"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('aid')"><i class="icon icon-aid"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('bug')"><i class="icon icon-bug"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('gift')"><i class="icon icon-gift"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('trophy')"><i class="icon icon-trophy"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('library')"><i class="icon icon-library"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('pacman')"><i class="icon icon-pacman"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('spades')"><i class="icon icon-spades"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('droplet')"><i class="icon icon-droplet"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('quill')"><i class="icon icon-quill"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('pencil')"><i class="icon icon-pencil"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('clubs')"><i class="icon icon-clubs"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('diamonds')"><i class="icon icon-diamonds"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('bullhorn')"><i class="icon icon-bullhorn"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('phone')"><i class="icon icon-phone"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('key')"><i class="icon icon-key"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('key2')"><i class="icon icon-key2"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('binoculars')"><i class="icon icon-binoculars"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('bell')"><i class="icon icon-bell"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('alarm')"><i class="icon icon-alarm"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('cart')"><i class="icon icon-cart"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('music')"><i class="icon icon-music"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('headphones-2')"><i class="icon icon-headphones-2"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('lady-bug')"><i class="icon icon-lady-bug"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('band-aid')"><i class="icon icon-band-aid"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('flask')"><i class="icon icon-flask"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('headphones')"><i class="icon icon-headphones"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('tank')"><i class="icon icon-tank"></i></d
-  </div>
-</div>
+  <section class="avatars-wrapper">
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('flag', $event)"><i class="icon icon-flag"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('truck', $event)"><i class="icon icon-truck"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('airplane', $event)"><i class="icon icon-airplane"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('briefcase', $event)"><i class="icon icon-briefcase"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('accessibility', $event)"><i class="icon icon-accessibility"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('lightning', $event)"><i class="icon icon-lightning"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('shield', $event)"><i class="icon icon-shield"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('target', $event)"><i class="icon icon-target"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('power-cord', $event)"><i class="icon icon-power-cord"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('lab', $event)"><i class="icon icon-lab"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('fire', $event)"><i class="icon icon-fire"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('hammer', $event)"><i class="icon icon-hammer"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('rocket', $event)"><i class="icon icon-rocket"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('meter', $event)"><i class="icon icon-meter"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('meter2', $event)"><i class="icon icon-meter2"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('leaf', $event)"><i class="icon icon-leaf"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('mug', $event)"><i class="icon icon-mug"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('hammer2', $event)"><i class="icon icon-hammer2"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('aid', $event)"><i class="icon icon-aid"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('bug', $event)"><i class="icon icon-bug"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('gift', $event)"><i class="icon icon-gift"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('trophy', $event)"><i class="icon icon-trophy"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('library', $event)"><i class="icon icon-library"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('pacman', $event)"><i class="icon icon-pacman"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('spades', $event)"><i class="icon icon-spades"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('droplet', $event)"><i class="icon icon-droplet"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('quill', $event)"><i class="icon icon-quill"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('pencil', $event)"><i class="icon icon-pencil"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('clubs', $event)"><i class="icon icon-clubs"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('diamonds', $event)"><i class="icon icon-diamonds"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('bullhorn', $event)"><i class="icon icon-bullhorn"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('phone', $event)"><i class="icon icon-phone"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('key', $event)"><i class="icon icon-key"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('key2', $event)"><i class="icon icon-key2"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('binoculars', $event)"><i class="icon icon-binoculars"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('bell', $event)"><i class="icon icon-bell"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('alarm', $event)"><i class="icon icon-alarm"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('cart', $event)"><i class="icon icon-cart"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('music', $event)"><i class="icon icon-music"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('headphones-2', $event)"><i class="icon icon-headphones-2"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('lady-bug', $event)"><i class="icon icon-lady-bug"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('band-aid', $event)"><i class="icon icon-band-aid"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('flask', $event)"><i class="icon icon-flask"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('headphones', $event)"><i class="icon icon-headphones"></i></div> 
+    <div class="avatar avatar-grey" ng-tap="chooseAvatar('tank', $event)"><i class="icon icon-tank"></i></d
+  </section>

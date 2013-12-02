@@ -8,8 +8,19 @@
     <div class="input-wrapper">
       <input type="password" ng-model="kid.passcode" maxlength="4" pattern="\d*" placeholder="Enter a simple passcode (4 numbers long)">
     </div>
-    <span ng-tap="goToAvatar(kid)" class="btn btn-green">Set Avatar</span>
-    <button type="submit" class="btn btn-green">Add Kid</button>
-
+    <!-- <span class="btn btn-green">Set Avatar</span> -->
+    
+    <p class="avatar-color-label">Avatar Color</p>
+    <section class="avatar-color">
+      <label for="green"><input checked="checked" id="green" value="green" name="color" ng-model="kid.avatar.color" type="radio" checked=true><span class="avatar avatar-green"><i class="icon icon-check hide"></i></span></label>    
+      <label for="red"><input id="red" value="red" name="color" ng-model="kid.avatar.color" type="radio"><span class="avatar avatar-red"><i class="icon icon-check hide"></i></span></label>    
+      <label for="blur"><input id="blur" value="blur" name="color" ng-model="kid.avatar.color" type="radio"><span class="avatar avatar-blue"><i class="icon icon-check hide"></i></span></label>    
+      <label for="yellow"><input id="yellow" value="yellow" name="color" ng-model="kid.avatar.color" type="radio"><span class="avatar avatar-yellow"><i class="icon icon-check hide"></i></span></label>    
+    </section>
+    <p class="avatar-color-label">Avatar Icon</p>
+    <div choose-avatar></div>
+    <section class="form-actions">
+      <button type="submit" class="btn btn-green">Add Kid</button>
+    </section>
   </form>
 </div>

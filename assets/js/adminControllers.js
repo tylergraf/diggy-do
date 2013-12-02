@@ -192,18 +192,19 @@ function AddKidCtrl($scope, $rootScope, $cookieStore, $http) {
   $rootScope.headerColor = 'red';
   $rootScope.pageIcon = 'settings';
 
-  $scope.addKid = function() {
-    var kid = $rootScope.tempKid;
-    delete $rootScope.tempKid;
+  $scope.addKid = function(kid) {
+    console.log(kid);
+    // var kid = $rootScope.tempKid;
+    // delete $rootScope.tempKid;
     $http.post('/api/kid',{kid: kid})
       .success(function(data, status, headers, config) {
         $rootScope.navigate('LR','/admin-kids');
       });
   }
-  $scope.goToAvatar = function(kid) {
-    $rootScope.tempKid = kid;
-    $rootScope.navigate('BT','/choose-avatar');
-  }
+  // $scope.goToAvatar = function(kid) {
+  //   $rootScope.tempKid = kid;
+  //   $rootScope.navigate('BT','/choose-avatar');
+  // }
 
 }
 
