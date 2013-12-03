@@ -28,4 +28,7 @@ module.exports = function(app) {
   app.get('/api/task/:id', t.getTask, function(req, res, next){
     res.json(req.task);
   });
+  app.del('/api/task/:id', t.deleteTask, function(req, res, next){
+    res.json({message: "Successfully deleted task."});
+  });
 }

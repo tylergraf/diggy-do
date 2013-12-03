@@ -260,6 +260,13 @@ function EditChoreCtrl($scope, $rootScope, $cookieStore, $http, $routeParams) {
         $rootScope.navigate('LR','/admin-chores');
       });
   }
+  $scope.deleteTask = function(taskId) {
+    console.log(taskId);
+    $http.delete('/api/task/'+taskId)
+      .success(function(data, status, headers, config) {
+        $rootScope.navigate('LR','/admin-chores');
+      });
+  }
 }
 function EditKidCtrl($scope, $rootScope, $cookieStore, $http, $routeParams) {
   if(!$cookieStore.get('currentKid')) {
