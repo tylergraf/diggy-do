@@ -1,7 +1,8 @@
 <div class="page page-view-admin-add-kid">
   <%- include _modal-header.ejs %>
-  <h3 class="heading-1">Add kid</h3>
-  <form ng-submit="addKid(kid)" class="form form-add-kid">
+  <h3 class="heading-1" ng-if="type === 'add'">Add kid</h3>
+  <h3 class="heading-1" ng-if="type === 'edit'">Edit kid</h3>
+  <form ng-submit="saveKid(kid)" class="form form-add-kid">
     <div class="input-wrapper">
       <input type="text" ng-model="kid.name" placeholder="Child's name">
     </div>
@@ -12,15 +13,18 @@
     
     <p class="avatar-color-label">Avatar Color</p>
     <section class="avatar-color">
-      <label for="green"><input checked="checked" id="green" value="green" name="color" ng-model="kid.avatar.color" type="radio" checked=true><span class="avatar avatar-green"><i class="icon icon-check hide"></i></span></label>    
-      <label for="red"><input id="red" value="red" name="color" ng-model="kid.avatar.color" type="radio"><span class="avatar avatar-red"><i class="icon icon-check hide"></i></span></label>    
-      <label for="blur"><input id="blur" value="blur" name="color" ng-model="kid.avatar.color" type="radio"><span class="avatar avatar-blue"><i class="icon icon-check hide"></i></span></label>    
-      <label for="yellow"><input id="yellow" value="yellow" name="color" ng-model="kid.avatar.color" type="radio"><span class="avatar avatar-yellow"><i class="icon icon-check hide"></i></span></label>    
+      <label for="green"><input checked="checked" id="green" value="green" ng-model="kid.avatar.color" type="radio" checked=true><span class="avatar avatar-green"><i class="icon icon-check hide"></i></span></label>    
+      <label for="red"><input id="red" value="red" ng-model="kid.avatar.color" type="radio"><span class="avatar avatar-red"><i class="icon icon-check hide"></i></span></label>    
+      <label for="blue"><input id="blue" value="blue" ng-model="kid.avatar.color" type="radio"><span class="avatar avatar-blue"><i class="icon icon-check hide"></i></span></label>    
+      <label for="yellow"><input id="yellow" value="yellow" ng-model="kid.avatar.color" type="radio"><span class="avatar avatar-yellow"><i class="icon icon-check hide"></i></span></label>    
     </section>
     <p class="avatar-color-label">Avatar Icon</p>
     <div choose-avatar></div>
     <section class="form-actions">
-      <button type="submit" class="btn btn-green">Add Kid</button>
+      <button ng-if="type === 'edit'" type="submit" class="btn btn-green">Save Kid</button>
+      <a ng-if="type === 'edit'" ng-tap="navigate('LR','/admin-kids')" class="btn btn-orange">Cancel</a>
+      <a ng-if="type === 'edit'" ng-tap="deleteKid(kid._id)" class="btn btn-red">Delete Kid</a>
+      <button ng-if="type === 'add'" type="submit" class="btn btn-green">Add Kid</button>
     </section>
   </form>
 </div>

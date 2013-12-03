@@ -1,6 +1,6 @@
 <div class="page page-view-admin-add-chore">
   <%- include _modal-header.ejs %>
-  <form class="form" id="addTask" ng-submit="addTask(task)">
+  <form class="form form-add-chore" id="addTask" ng-submit="saveTask(task)">
     <input type="hidden" name="type" value="repeated" ng-model="task.type">
 
     <div class="task-name-wrapper">
@@ -15,34 +15,26 @@
     
     <h3 class="section-heading"><i class="icon icon-repeat"></i>Repeat</h3>
     <div class="repeated-wrapper">
-      <span id="monday" ng-tap="toggleDay('monday')" class="day day-monday">M</span>
-      <span id="tuesday" ng-tap="toggleDay('tuesday')" class="day day-tuesday">T</span>
-      <span id="wednesday" ng-tap="toggleDay('wednesday')" class="day day-wednesday">W</span>
-      <span id="thursday" ng-tap="toggleDay('thursday')" class="day day-thursday">Th</span>
-      <span id="friday" ng-tap="toggleDay('friday')" class="day day-friday">F</span>
-      <span id="saturday" ng-tap="toggleDay('saturday')" class="day day-saturday">S</span>
-      <span id="sunday" ng-tap="toggleDay('sunday')" class="day day-sunday">Su</span>
+      <label for="monday" class="day-label"><input id="monday" ng-model="task.repeated.monday" type="checkbox"><span id="monday" class="day day-monday">M</span></label>
+      <label for="tuesday" class="day-label"><input id="tuesday" ng-model="task.repeated.tuesday" type="checkbox"><span id="tuesday" class="day day-tuesday">T</span></label>
+      <label for="wednesday" class="day-label"><input id="wednesday" ng-model="task.repeated.wednesday" type="checkbox"><span id="wednesday" class="day day-wednesday">W</span></label>
+      <label for="thursday" class="day-label"><input id="thursday" ng-model="task.repeated.thursday" type="checkbox"><span id="thursday" class="day day-thursday">Th</span></label>
+      <label for="friday" class="day-label"><input id="friday" ng-model="task.repeated.friday" type="checkbox"><span id="friday" class="day day-friday">F</span></label>
+      <label for="saturday" class="day-label"><input id="saturday" ng-model="task.repeated.saturday" type="checkbox"><span id="saturday" class="day day-saturday">S</span></label>
+      <label for="sunday" class="day-label"><input id="sunday" ng-model="task.repeated.sunday" type="checkbox"><span id="sunday" class="day day-sunday">Su</span></label>
     </div>
     <h3 class="section-heading"><i class="icon icon-coins"></i>Chore Value</h3>
     <div class="value-wrapper">
       <div class="input-wrapper">
-        <input type="text" name="taskValue" pattern="\d*" ng-model="task.value">
+        <input type="text" name="taskValue" pattern="\d*" placeholder="100" ng-model="task.value">
       </div>
       <label for="taskValue" class="value-label">Coins</label>
     </div>
 
     <h3 class="section-heading"><i class="icon icon-profile"></i>Assign Chore</h3>
     <section class="assign-chore-wrapper">
-      <a ng-tap="assignChore(kid)" ng-repeat="kid in kids" id="{{kid._id}}" class="avatar avatar-{{kid.avatar.color}}">
-        <i class="icon icon-check hide"></i>
-        <i class="icon icon-{{kid.avatar.icon}}"></i>
-        <span class="kid-name">{{kid.name}}</span>
-      </a> 
+      <label ng-repeat="kid in kids" for="{{kid._id}}" class="day-label"><input id="{{kid._id}}" name="kid" ng-model="task._kid" value="{{kid._id}}" type="radio"><i class="icon icon-check"></i><span class="avatar avatar-{{kid.avatar.color}}"><i class="icon icon-{{kid.avatar.icon}}"></i><span class="kid-name">{{kid.name}}</span></span></label>
     </section>
-    <!-- <div ng-repeat='kid in kids'>
-        <input type="radio" name="kid" value="{{kid._id}}" ng-model="task._kid">
-        {{kid.name}}
-    </div> -->
     <section class="submit-actions">
       <div class="submit-action">
         <span class="button-label">OK</span>

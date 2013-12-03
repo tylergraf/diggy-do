@@ -94,6 +94,18 @@ angular.module('dangle', ['dangle.filters', 'dangle.services', 'dangle.directive
         templateUrl: '/partials/admin-add-reward',
         controller: AddRewardCtrl
       }).
+      when('/admin-edit-chore/:id', {
+        templateUrl: '/partials/admin-add-chore',
+        controller: EditChoreCtrl
+      }).
+      when('/admin-edit-kid/:id', {
+        templateUrl: '/partials/admin-add-kid',
+        controller: EditKidCtrl
+      }).
+      when('/admin-edit-reward', {
+        templateUrl: '/partials/admin-add-reward',
+        controller: EditRewardCtrl
+      }).
       when('/login', {
         templateUrl: '/partials/login',
         controller: LoginCtrl

@@ -22,4 +22,10 @@ module.exports = function(app) {
   app.post('/api/task', t.newTask, function(req, res, next){
     res.json({'stuff':'thingd'});
   });
+  app.put('/api/task/:id', t.updateTask, function(req, res, next){
+    res.json(req.task);
+  });
+  app.get('/api/task/:id', t.getTask, function(req, res, next){
+    res.json(req.task);
+  });
 }

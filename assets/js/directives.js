@@ -17,12 +17,13 @@ angular.module('dangle.directives', [])
           tapping && scope.$apply(attrs.ngTap);
         });
       } else {
-        elm.bind('click', function() {
+        elm.bind('click', function(evt) {
           scope.$apply(attrs.ngTap);
         });
       }
     };
-  }).directive('dayViewer', function ($http, $rootScope, $routeParams) {
+  })
+  .directive('dayViewer', function ($http, $rootScope, $routeParams) {
     return {
         restrict: 'A',
         templateUrl: '/partials/dayViewer',
@@ -139,7 +140,7 @@ angular.module('dangle.directives', [])
     templateUrl: '/partials/choose-avatar',
     replace: false,
     link: function($scope, $element, $attributes) {
-      $scope.chooseAvatar = function(icon, event) {
+      $scope.chooseAvatar = function(icon) {
         if($scope.kid && $scope.kid.avatar){
           $scope.kid.avatar.icon = icon;
         } else if($scope.kid) {
@@ -147,8 +148,11 @@ angular.module('dangle.directives', [])
         } else {
           $scope.kid = {avatar: {icon: icon}};
         }
-        console.log(event);
-        // $element.find('.icon').removeClass('selected');
+        var els = document.querySelectorAll('.avatars-wrapper .avatar');
+        angular.forEach(els, function(el) {
+          el.classList.remove('selected');
+        });
+        document.getElementById(icon).classList.add('selected');
         $element.find('.icon').removeClass('selected');
       }
     }

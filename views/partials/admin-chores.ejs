@@ -10,7 +10,7 @@
   </section>
   <section class="admin-chores">
     <ul class="unstyled task-list">
-      <li ng-repeat="task in tasks | orderBy:'+_kid._id'" class="task-list-item">
+      <li ng-repeat="task in tasks | orderBy:'+_kid._id'" class="task-list-item" ng-tap="navigate('RL','/admin-edit-chore/{{task._id}}')">
         <span class="avatar avatar-{{task._kid.avatar.color}}"><i class="icon icon-{{task._kid.avatar.icon}}"></i></span>
         <span class="task-name">{{task.name}}</span>
         <span class="task-list-bottom">

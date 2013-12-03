@@ -1,47 +1,47 @@
   <section class="avatars-wrapper">
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('flag', $event)"><i class="icon icon-flag"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('truck', $event)"><i class="icon icon-truck"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('airplane', $event)"><i class="icon icon-airplane"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('briefcase', $event)"><i class="icon icon-briefcase"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('accessibility', $event)"><i class="icon icon-accessibility"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('lightning', $event)"><i class="icon icon-lightning"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('shield', $event)"><i class="icon icon-shield"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('target', $event)"><i class="icon icon-target"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('power-cord', $event)"><i class="icon icon-power-cord"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('lab', $event)"><i class="icon icon-lab"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('fire', $event)"><i class="icon icon-fire"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('hammer', $event)"><i class="icon icon-hammer"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('rocket', $event)"><i class="icon icon-rocket"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('meter', $event)"><i class="icon icon-meter"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('meter2', $event)"><i class="icon icon-meter2"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('leaf', $event)"><i class="icon icon-leaf"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('mug', $event)"><i class="icon icon-mug"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('hammer2', $event)"><i class="icon icon-hammer2"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('aid', $event)"><i class="icon icon-aid"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('bug', $event)"><i class="icon icon-bug"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('gift', $event)"><i class="icon icon-gift"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('trophy', $event)"><i class="icon icon-trophy"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('library', $event)"><i class="icon icon-library"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('pacman', $event)"><i class="icon icon-pacman"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('spades', $event)"><i class="icon icon-spades"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('droplet', $event)"><i class="icon icon-droplet"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('quill', $event)"><i class="icon icon-quill"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('pencil', $event)"><i class="icon icon-pencil"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('clubs', $event)"><i class="icon icon-clubs"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('diamonds', $event)"><i class="icon icon-diamonds"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('bullhorn', $event)"><i class="icon icon-bullhorn"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('phone', $event)"><i class="icon icon-phone"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('key', $event)"><i class="icon icon-key"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('key2', $event)"><i class="icon icon-key2"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('binoculars', $event)"><i class="icon icon-binoculars"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('bell', $event)"><i class="icon icon-bell"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('alarm', $event)"><i class="icon icon-alarm"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('cart', $event)"><i class="icon icon-cart"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('music', $event)"><i class="icon icon-music"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('headphones-2', $event)"><i class="icon icon-headphones-2"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('lady-bug', $event)"><i class="icon icon-lady-bug"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('band-aid', $event)"><i class="icon icon-band-aid"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('flask', $event)"><i class="icon icon-flask"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('headphones', $event)"><i class="icon icon-headphones"></i></div> 
-    <div class="avatar avatar-grey" ng-tap="chooseAvatar('tank', $event)"><i class="icon icon-tank"></i></d
+    <label for="flag"><input id="flag" value="flag" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="flag" ng-tap="chooseAvatar('flag')"><i class="icon icon-flag"></i></div></label>
+    <label for="truck"><input id="truck" value="truck" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="truck" ng-tap="chooseAvatar('truck')"><i class="icon icon-truck"></i></div></label> 
+    <label for="airplane"><input id="airplane" value="airplane" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="airplane" ng-tap="chooseAvatar('airplane')"><i class="icon icon-airplane"></i></div></label> 
+    <label for="briefcase"><input id="briefcase" value="briefcase" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="briefcase" ng-tap="chooseAvatar('briefcase')"><i class="icon icon-briefcase"></i></div></label> 
+    <label for="accessibility"><input id="accessibility" value="accessibility" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="accessibility" ng-tap="chooseAvatar('accessibility')"><i class="icon icon-accessibility"></i></div></label> 
+    <label for="lightning"><input id="lightning" value="lightning" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="lightning" ng-tap="chooseAvatar('lightning')"><i class="icon icon-lightning"></i></div></label> 
+    <label for="shield"><input id="shield" value="shield" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="shield" ng-tap="chooseAvatar('shield')"><i class="icon icon-shield"></i></div></label> 
+    <label for="target"><input id="target" value="target" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="target" ng-tap="chooseAvatar('target')"><i class="icon icon-target"></i></div></label> 
+    <label for="power-cord"><input id="power-cord" value="power-cord" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="power-cord" ng-tap="chooseAvatar('power-cord')"><i class="icon icon-power-cord"></i></div></label> 
+    <label for="lab"><input id="lab" value="lab" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="lab" ng-tap="chooseAvatar('lab')"><i class="icon icon-lab"></i></div></label> 
+    <label for="fire"><input id="fire" value="fire" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="fire" ng-tap="chooseAvatar('fire')"><i class="icon icon-fire"></i></div></label> 
+    <label for="hammer"><input id="hammer" value="hammer" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="hammer" ng-tap="chooseAvatar('hammer')"><i class="icon icon-hammer"></i></div></label> 
+    <label for="rocket"><input id="rocket" value="rocket" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="rocket" ng-tap="chooseAvatar('rocket')"><i class="icon icon-rocket"></i></div></label> 
+    <label for="meter"><input id="meter" value="meter" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="meter" ng-tap="chooseAvatar('meter')"><i class="icon icon-meter"></i></div></label> 
+    <label for="meter2"><input id="meter2" value="meter2" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="meter2" ng-tap="chooseAvatar('meter2')"><i class="icon icon-meter2"></i></div></label> 
+    <label for="leaf"><input id="leaf" value="leaf" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="leaf" ng-tap="chooseAvatar('leaf')"><i class="icon icon-leaf"></i></div></label> 
+    <label for="mug"><input id="mug" value="mug" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="mug" ng-tap="chooseAvatar('mug')"><i class="icon icon-mug"></i></div></label> 
+    <label for="hammer2"><input id="hammer2" value="hammer2" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="hammer2" ng-tap="chooseAvatar('hammer2')"><i class="icon icon-hammer2"></i></div></label> 
+    <label for="aid"><input id="aid" value="aid" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="aid" ng-tap="chooseAvatar('aid')"><i class="icon icon-aid"></i></div></label> 
+    <label for="bug"><input id="bug" value="bug" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="bug" ng-tap="chooseAvatar('bug')"><i class="icon icon-bug"></i></div></label> 
+    <label for="gift"><input id="gift" value="gift" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="gift" ng-tap="chooseAvatar('gift')"><i class="icon icon-gift"></i></div></label> 
+    <label for="trophy"><input id="trophy" value="trophy" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="trophy" ng-tap="chooseAvatar('trophy')"><i class="icon icon-trophy"></i></div></label> 
+    <label for="library"><input id="library" value="library" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="library" ng-tap="chooseAvatar('library')"><i class="icon icon-library"></i></div></label> 
+    <label for="pacman"><input id="pacman" value="pacman" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="pacman" ng-tap="chooseAvatar('pacman')"><i class="icon icon-pacman"></i></div></label> 
+    <label for="spades"><input id="spades" value="spades" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="spades" ng-tap="chooseAvatar('spades')"><i class="icon icon-spades"></i></div></label> 
+    <label for="droplet"><input id="droplet" value="droplet" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="droplet" ng-tap="chooseAvatar('droplet')"><i class="icon icon-droplet"></i></div></label> 
+    <label for="quill"><input id="quill" value="quill" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="quill" ng-tap="chooseAvatar('quill')"><i class="icon icon-quill"></i></div></label> 
+    <label for="pencil"><input id="pencil" value="pencil" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="pencil" ng-tap="chooseAvatar('pencil')"><i class="icon icon-pencil"></i></div></label> 
+    <label for="clubs"><input id="clubs" value="clubs" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="clubs" ng-tap="chooseAvatar('clubs')"><i class="icon icon-clubs"></i></div></label> 
+    <label for="diamonds"><input id="diamonds" value="diamonds" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="diamonds" ng-tap="chooseAvatar('diamonds')"><i class="icon icon-diamonds"></i></div></label> 
+    <label for="bullhorn"><input id="bullhorn" value="bullhorn" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="bullhorn" ng-tap="chooseAvatar('bullhorn')"><i class="icon icon-bullhorn"></i></div></label> 
+    <label for="phone"><input id="phone" value="phone" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="phone" ng-tap="chooseAvatar('phone')"><i class="icon icon-phone"></i></div></label> 
+    <label for="key"><input id="key" value="key" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="key" ng-tap="chooseAvatar('key')"><i class="icon icon-key"></i></div></label> 
+    <label for="key2"><input id="key2" value="key2" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="key2" ng-tap="chooseAvatar('key2')"><i class="icon icon-key2"></i></div></label> 
+    <label for="binoculars"><input id="binoculars" value="binoculars" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="binoculars" ng-tap="chooseAvatar('binoculars')"><i class="icon icon-binoculars"></i></div></label> 
+    <label for="bell"><input id="bell" value="bell" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="bell" ng-tap="chooseAvatar('bell')"><i class="icon icon-bell"></i></div></label> 
+    <label for="alarm"><input id="alarm" value="alarm" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="alarm" ng-tap="chooseAvatar('alarm')"><i class="icon icon-alarm"></i></div></label> 
+    <label for="cart"><input id="cart" value="cart" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="cart" ng-tap="chooseAvatar('cart')"><i class="icon icon-cart"></i></div></label> 
+    <label for="music"><input id="music" value="music" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="music" ng-tap="chooseAvatar('music')"><i class="icon icon-music"></i></div></label> 
+    <label for="headphones-2"><input id="headphones-2" value="headphones-2" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="headphones-2" ng-tap="chooseAvatar('headphones-2')"><i class="icon icon-headphones-2"></i></div></label> 
+    <label for="lady-bug"><input id="lady-bug" value="lady-bug" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="lady-bug" ng-tap="chooseAvatar('lady-bug')"><i class="icon icon-lady-bug"></i></div></label> 
+    <label for="band-aid"><input id="band-aid" value="band-aid" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="band-aid" ng-tap="chooseAvatar('band-aid')"><i class="icon icon-band-aid"></i></div></label> 
+    <label for="flask"><input id="flask" value="flask" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="flask" ng-tap="chooseAvatar('flask')"><i class="icon icon-flask"></i></div></label> 
+    <label for="headphones"><input id="headphones" value="headphones" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="headphones" ng-tap="chooseAvatar('headphones')"><i class="icon icon-headphones"></i></div></label> 
+    <label for="tank"><input id="tank" value="tank" name="icon" ng-model="kid.avatar.icon" type="radio" checked=true><div class="avatar avatar-grey" id="tank" ng-tap="chooseAvatar('tank')"><i class="icon icon-tank"></i></div</label>
   </section>

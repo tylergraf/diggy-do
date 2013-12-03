@@ -548,6 +548,9 @@ input[type=password]:focus {
   -webkit-flex-wrap: wrap;
   margin-top: 20px;
 }
+.avatars-wrapper .avatar.selected {
+  opacity: 1;
+}
 .page-login .main-header-wrapper {
   display: none;
 }
@@ -753,6 +756,7 @@ input[type=password]:focus {
 
 
 /*ADMIN CHORES PAGE*/
+.page-admin-edit-chore,
 .page-admin-chores {
   background: #bbbdc0;
 }
@@ -856,7 +860,10 @@ input[type=password]:focus {
   text-align: center;
   cursor: pointer;
 }
-.repeated-wrapper .day.selected {
+.repeated-wrapper .day-label {
+  width: 100%;
+}
+.repeated-wrapper input[type=checkbox]:checked + .day {
   border-bottom: none;
   margin-top: 4px;
   box-shadow: inset 4px 0px 0px #9d1c52;
@@ -866,7 +873,36 @@ input[type=password]:focus {
   margin-top: 4px;
   box-shadow: none;
 }
+.form-add-chore .repeated-wrapper input[type=checkbox]{
+  display: none;
+}
+.form-add-chore .input-wrapper {
+  width: 100%;
+}
+.form-add-chore input[type=radio] {
+  display: none;
+}
+.form-add-chore .assign-chore-wrapper input[type=radio]:checked + .icon-check {
+  display: block;
+}
+.form-add-chore .assign-chore-wrapper input[type=radio]:checked ~ .avatar {
+  opacity: 0.3;
+}
+.form-add-chore .assign-chore-wrapper input[type=radio]:checked ~ .avatar .icon {
+  color: #eaeaea;
+}
 
+.form-add-chore .assign-chore-wrapper .icon-check {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  height: 100px;
+  line-height: 80px;
+  width: 100px;
+  text-align: center;
+  font-size: 50px;
+  color: #fff;
+}
 .value-wrapper {
   display: -webkit-flex;
   padding: 10px;
@@ -945,6 +981,9 @@ input[type=password]:focus {
 .form-add-kid input[type=radio]:checked + .avatar .icon.icon-check {
   display: block;
 }
+.form-add-kid input[type=radio]:checked + .avatar {
+  opacity: 1;
+}
 .form-add-kid .input-wrapper {
   margin: 10px;
 }
@@ -968,6 +1007,9 @@ input[type=password]:focus {
   margin-bottom: 10px;
   margin-right: 0px;
   margin-left: 10px;
+}
+.form-add-kid .avatars-wrapper .avatar {
+  opacity: 0.6;
 }
 .form-add-kid .avatar .icon{
   line-height: 35px;

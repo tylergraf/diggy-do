@@ -150,7 +150,7 @@ function AddChoreCtrl($scope, $rootScope, $cookieStore, $http) {
     $scope.checkIfDisabled();
   }
 
-  $scope.addTask = function(task) {
+  $scope.saveTask = function(task) {
     console.log(task);
     $http.post('/api/task', task).
       success(function(data, status, headers, config) {
@@ -192,7 +192,9 @@ function AddKidCtrl($scope, $rootScope, $cookieStore, $http) {
   $rootScope.headerColor = 'red';
   $rootScope.pageIcon = 'settings';
 
-  $scope.addKid = function(kid) {
+  $scope.type = 'add';
+
+  $scope.saveKid = function(kid) {
     console.log(kid);
     // var kid = $rootScope.tempKid;
     // delete $rootScope.tempKid;
@@ -223,6 +225,81 @@ function AddRewardCtrl($scope, $rootScope, $cookieStore, $http) {
   $rootScope.pageIcon = 'settings';
 }
 
+function EditChoreCtrl($scope, $rootScope, $cookieStore, $http, $routeParams) {
+  if(!$cookieStore.get('currentKid')) {
+    return $rootScope.navigate('fade','/');
+  } else if(!$cookieStore.get('currentKid').admin){
+    return $rootScope.navigate('fade','/chores');
+  }
+
+  $rootScope.backURL = '/admin-chores';
+  $rootScope.modal = true;
+  $rootScope.pageName = 'admin-edit-chore';
+  $rootScope.pageTitle = 'Edit Chore';
+  $rootScope.headerColor = 'red';
+  $rootScope.pageIcon = 'settings';
+
+  $scope.type = 'edit';
+
+  var taskId = $routeParams.id;
+  $http.get('/api/task/'+taskId)
+    .success(function(data, status, headers, config) {
+      $scope.task = data;
+      console.log($scope.task);
+    });
+
+  $http.get('/api/kids/')
+    .success(function(data, status, headers, config) {
+      $scope.kids = data;
+    });
+
+  $scope.saveTask = function(task) {
+    console.log(task);
+    $http.put('/api/task/'+taskId,{task: task})
+      .success(function(data, status, headers, config) {
+        $rootScope.navigate('LR','/admin-chores');
+      });
+  }
+}
+function EditKidCtrl($scope, $rootScope, $cookieStore, $http, $routeParams) {
+  if(!$cookieStore.get('currentKid')) {
+    return $rootScope.navigate('fade','/');
+  } else if(!$cookieStore.get('currentKid').admin){
+    return $rootScope.navigate('fade','/chores');
+  }
+
+  $rootScope.backURL = '/admin-kids';
+  $rootScope.modal = true;
+  $rootScope.pageName = 'admin-add-kid';
+  $rootScope.pageTitle = 'Edit Kid';
+  $rootScope.headerColor = 'red';
+  $rootScope.pageIcon = 'settings';
+
+  $scope.type = 'edit';
+  var kidId = $routeParams.id;
+  $http.get('/api/kid/'+kidId)
+    .success(function(data, status, headers, config) {
+      $scope.kid = data;
+      console.log($scope.kid);
+    });
+  // $scope.kid = $rootScope.tempEditKid;
+  // delete $rootScope.tempEditKid;
+  $scope.saveKid = function(kid) {
+    console.log(kid);
+    $http.put('/api/kid/'+kidId,{kid: kid})
+      .success(function(data, status, headers, config) {
+        $rootScope.navigate('LR','/admin-kids');
+      });
+  }
+  $scope.deleteKid = function(kidId) {
+    $http.delete('/api/kid/'+kidId)
+      .success(function(data, status, headers, config) {
+        $rootScope.navigate('LR','/admin-kids');
+      });
+  }
+}
+function EditRewardCtrl($scope, $rootScope, $cookieStore, $http) {
+}
 
 
 function AdminCtrl($scope, $rootScope, $cookieStore, $http, $location, $routeParams) {
@@ -293,7 +370,10 @@ function AdminKidsCtrl($scope, $rootScope, $cookieStore, $http, $location, $rout
         $scope.kids = data;
       });
 
-
+  $scope.editKid = function(kid) {
+    $rootScope.tempEditKid = kid;
+    $rootScope.navigate('RL','/admin-edit-kid');
+  }
 
 }
 function AdminRewardsCtrl($scope, $rootScope, $cookieStore, $http, $location, $routeParams) {

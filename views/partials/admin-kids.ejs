@@ -4,7 +4,7 @@
   <a ng-tap="navigate('RL','/admin-add-kid','/admin-kids')" class="btn btn-green">Add Kid</a>
   
   <ul class="unstyled table-list">
-    <li class="table-list-item" ng-repeat="kid in kids">
+    <li class="table-list-item" ng-repeat="kid in kids" ng-tap="navigate('RL','/admin-edit-kid/'+kid._id)">
       <span class="avatar avatar-{{kid.avatar.color}}"><i class="icon icon-{{kid.avatar.icon}}"></i></span>
       <span class="item-label">{{kid.name}}</span>
     </li>
