@@ -2,9 +2,11 @@
   <header class="main-header show-nav-{{showNav}} show-sub-nav-{{showSubNav}}" ng-controller="navCtrl">
     <nav class="nav">
       <i class="icon icon-x" ng-tap="toggleNav()"></i>
-      <a class="icon-only" ng-tap="navigate('LR','/chores');toggleNav()"><i class="icon icon-check-mark"></i></a>
-      <a class="icon-only" ng-tap="navigate('RL','/coins');toggleNav()"><i class="icon icon-ruby"></i></a>
-      <a class="icon-only" ng-tap="navigate('RL','/rewards');toggleNav()"><i class="icon icon-reward"></i></a>
+
+      <a ng-repeat="navItem in nav" class="icon-only" ng-tap="navigate('LR','{{navItem.URL}}');toggleNav()"><i class="icon icon-{{navItem.icon}}"></i></a>
+      <!-- <a class="icon-only" ng-tap="navigate('LR','/chores');toggleNav()"><i class="icon icon-check-mark"></i></a> -->
+      <!-- <a class="icon-only" ng-tap="navigate('RL','/coins');toggleNav()"><i class="icon icon-ruby"></i></a> -->
+      <!-- <a class="icon-only" ng-tap="navigate('RL','/rewards');toggleNav()"><i class="icon icon-reward"></i></a> -->
     </nav>
     <div class="main-heading header-{{headerColor}}">
       <!-- <i class="icon icon-toggle-down" ng-tap="toggleSubNav()"></i> -->

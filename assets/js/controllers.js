@@ -279,6 +279,7 @@ function PassCodeCtrl($scope, $rootScope, $cookieStore, storage, $http, $locatio
       console.log($rootScope.tempKid);
       if($scope.passcode == passcode){
         $rootScope.login($rootScope.tempKid);
+        $rootScope.$emit('login');
       }
     }
   });
@@ -382,6 +383,18 @@ function navCtrl($scope, $rootScope, $cookieStore, storage, $http, $location) {
     storage.clearAll();
     $rootScope.navigate('fade','/login');
   };
+
+  $rootScope.$on('login', function() {
+    var kid = $cookieStore.get('currentKid');
+    if(kid.admin){
+      $scope.navType = 'admin';
+      $scope.nav = [
+        {icon: 'check-mark', URL: '/chore-feed'},
+        {icon: 'profile', URL: '/kids-feed'},
+        {icon: 'reward', URL: '/rewards'}
+      ];
+    }
+  });
 }
 
 function grabberCtrl($scope, $rootScope, $cookieStore, storage, $http) {
