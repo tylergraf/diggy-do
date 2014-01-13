@@ -239,6 +239,12 @@ function RewardsCtrl($scope, $rootScope, $cookieStore, storage, $http, $routePar
   $rootScope.headerColor = 'red';
   $rootScope.pageIcon = 'reward';
 
+  $http.get('/api/rewards').
+    success(function(data, status, headers, config) {
+      // $scope.kids = data;
+      console.log(data);
+      $scope.rewards = data;
+    });
   
 }
 function ProfileCtrl($scope, $rootScope, $cookieStore, storage, $http, $location, $routeParams) {
@@ -366,9 +372,22 @@ function navCtrl($scope, $rootScope, $cookieStore, storage, $http, $location) {
       $rootScope.grabberLabel = 'Admin';
       $rootScope.grabberURL = '/admin';
       $rootScope.navigate('fade','/admin-chore-feed');
+
+      $rootScope.navType = 'admin';
+      $rootScope.nav = [
+        {icon: 'check-mark', URL: '/admin-chore-feed'},
+        {icon: 'profile', URL: '/admin-kid-feed'},
+        {icon: 'reward', URL: '/admin-rewards'}
+      ];
     } else {
       $rootScope.grabberLabel = 'Me';
       $rootScope.grabberURL = '/profile';
+      $rootScope.navType = 'kid';
+      $rootScope.nav = [
+        {icon: 'check-mark', URL: '/chores'},
+        {icon: 'ruby', URL: '/coins'},
+        {icon: 'reward', URL: '/rewards'}
+      ];
       $rootScope.navigate('fade','/chores');
     }
   }
@@ -386,14 +405,14 @@ function navCtrl($scope, $rootScope, $cookieStore, storage, $http, $location) {
 
   $rootScope.$on('login', function() {
     var kid = $cookieStore.get('currentKid');
-    if(kid.admin){
-      $scope.navType = 'admin';
-      $scope.nav = [
-        {icon: 'check-mark', URL: '/chore-feed'},
-        {icon: 'profile', URL: '/kids-feed'},
-        {icon: 'reward', URL: '/rewards'}
-      ];
-    }
+    // if(kid.admin){
+    //   $scope.navType = 'admin';
+    //   $scope.nav = [
+    //     {icon: 'check-mark', URL: '/chore-feed'},
+    //     {icon: 'profile', URL: '/kids-feed'},
+    //     {icon: 'reward', URL: '/rewards'}
+    //   ];
+    // }
   });
 }
 
@@ -412,7 +431,7 @@ function grabberCtrl($scope, $rootScope, $cookieStore, storage, $http) {
     } else {
       $rootScope.grabberLabel = 'Me';
       $rootScope.grabberURL = '/profile';
-      $rootScope.navigate('fade','/chores');
+      // $rootScope.navigate('fade','/chores');
     }
   }
 }

@@ -67,8 +67,12 @@ angular.module('dangle', ['dangle.filters', 'dangle.services', 'dangle.directive
         controller: AdminCtrl
       }).
       when('/admin-chore-feed', {
-        templateUrl: '/partials/chore-feed',
+        templateUrl: '/partials/admin-chore-feed',
         controller: ChoreFeedCtrl
+      }).
+      when('/admin-kid-feed', {
+        templateUrl: '/partials/admin-kid-feed',
+        controller: KidFeedCtrl
       }).
       when('/admin-chores', {
         templateUrl: '/partials/admin-chores',
@@ -134,3 +138,14 @@ angular.module('ng').run(['$rootScope', function($rootScope) {
         }
     };
 }]);
+
+moment.lang('en', {
+  calendar : {
+    lastDay : '[Yesterday]',
+    sameDay : '[Today]',
+    nextDay : '[Tomorrow]',
+    lastWeek : 'dddd',
+    nextWeek : 'dddd',
+    sameElse : 'MMM D YYYY'
+  }
+});

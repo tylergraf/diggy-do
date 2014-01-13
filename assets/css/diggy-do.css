@@ -730,11 +730,11 @@ input[type=password]:focus {
   font-weight: bold;
   color: #58585b;
   line-height: 50px;
-  padding: 0 10px;
+  padding: 0 0 0 10px;
 }
-.dashboard-list-item .icon {
+.dashboard-list-item .icon-wrapper {
   float: right;
-  margin-top: 10px;
+  padding: 15px 10px;
 }
 .dashboard-list-item .avatar {
   height: 30px;
@@ -746,12 +746,52 @@ input[type=password]:focus {
 }
 .dashboard-list-item .avatar .icon {
   font-size: 18px;
-  line-height: 10px;
+  line-height: 30px;
   float: none;
 }
 .column-1 {
-  width: 130px;
+  width: 100px;
   float: left;
+}
+.username-input input {
+  font-size: 20px;
+  height: 27px;
+  font-weight: bold;
+}
+.form-username {
+  margin: 0;
+}
+.dashboard-list-item .username-input {
+  float: left;
+  border: none;
+  margin-top: 6px;
+  padding: 5px 8px;
+  width: 80px;
+}
+.edit-username-wrapper .btn {
+  margin-top: 8px;
+  margin-left: 10px;
+  padding: 5px 10px;
+  float: left;
+}
+
+/*ADMIN KID FEED PAGE*/
+.page-view-admin-kid-feed .kid-name {
+  color: #231F20;
+}
+
+.page-view-admin-kid-feed .kids-wrapper {
+  margin-top: 30px;
+  float: left;
+}
+.page-view-admin-kid-feed .kid-list-item {
+  display: -webkit-box;
+}
+.page-view-admin-kid-feed .kid-points {
+  line-height: 80px;
+  margin-left: 20px;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 
@@ -863,6 +903,14 @@ input[type=password]:focus {
 .repeated-wrapper .day-label {
   width: 100%;
 }
+.repeated-wrapper .day.selected:first-child {
+  box-shadow: none;
+}
+.repeated-wrapper .day.selected {
+  color: #9d1c52;
+}
+
+.repeated-wrapper .day.selected,
 .repeated-wrapper input[type=checkbox]:checked + .day {
   border-bottom: none;
   margin-top: 4px;
@@ -942,13 +990,13 @@ input[type=password]:focus {
 .submit-actions {
   border-top: 5px solid #a7a9ab;
   margin-top: 10px;
-  display: -webkit-flex; 
+  display: -webkit-box; 
 }
 .submit-actions .submit-action {
-  width: 100px;
+  width: 70px;
   text-align: center;
   margin-top: 10px;
-  margin-left: 40px;
+  margin-left: 27px;
 }
 .submit-actions .submit-action .button-label {
   text-transform: uppercase;
@@ -958,13 +1006,13 @@ input[type=password]:focus {
   text-shadow: 0px 1px 0 #fff;
 }
 .submit-actions .submit-action .btn {
-  width: 100%;
+  width: 70px;
   padding: 0;
-  height: 100px;
-  line-height: 130px;
+  height: 70px;
+  line-height: 90px;
 }
 .submit-actions .submit-action .icon {
-  font-size: 50px;
+  font-size: 35px;
 }
 
 

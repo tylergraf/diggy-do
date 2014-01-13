@@ -1,4 +1,28 @@
 <div class="page page-view-admin-add-reward">
   <%- include _modal-header.ejs %>
   <h3 class="heading-1">Add reward</h3>
+  <form class="form" ng-submit="addReward(reward)">
+    <label>Name</label>
+    <div class="input-wrapper">
+      <input type="text" name="name" ng-model="reward.name" placeholder="Name the reward">
+    </div>
+    <label>Value</label>
+    <div class="input-wrapper">
+      <input type="text" name="value" ng-model="reward.value" placeholder="How much is it worth?">
+    </div>
+    <p class="avatar-color-label">Avatar Color</p>
+    <section class="avatar-color">
+      <label for="green"><input checked="checked" id="green" value="green" ng-model="reward.avatar.color" type="radio" checked=true><span class="avatar avatar-green"><i class="icon icon-check hide"></i></span></label>    
+      <label for="red"><input id="red" value="red" ng-model="reward.avatar.color" type="radio"><span class="avatar avatar-red"><i class="icon icon-check hide"></i></span></label>    
+      <label for="blue"><input id="blue" value="blue" ng-model="reward.avatar.color" type="radio"><span class="avatar avatar-blue"><i class="icon icon-check hide"></i></span></label>    
+      <label for="yellow"><input id="yellow" value="yellow" ng-model="reward.avatar.color" type="radio"><span class="avatar avatar-yellow"><i class="icon icon-check hide"></i></span></label>    
+    </section>
+    <label>Avatar</label>
+    <div class="input-wrapper">
+      <input type="text" name="avatar" ng-model="reward.avatar.icon">
+    </div>
+    <!-- <input type="file" capture="camera" accept="image/*" id="img" name="img" ng-model="reward.avatar.img"> -->
+
+    <button type="submit" class="btn btn-blue">Save</button>
+  </form>
 </div>

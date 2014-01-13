@@ -42,6 +42,10 @@ module.exports = function(app) {
     
   });
 
+  app.put("/api/user/username", u.saveUsername, function(req, res, next) {
+    res.json({username: req.username});
+  });
+  
 }
 
 function validateEmail(email) { 

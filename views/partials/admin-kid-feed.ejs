@@ -1,0 +1,19 @@
+<!-- <div class="day-viewer" day-viewer property="tasks" feed="true" url="/api/tasks"></div> -->
+<!-- <div class="day-viewer page" day-viewer property="tasks" feed="" url="/api/tasks"></div> -->
+<!-- <div class="day-view"> -->
+  <!-- <header class="header">
+    <a href="#" class="next" ng-tap="nextDay()">&#9654;</a>
+    <a href="#" class="prev" ng-tap="prevDay()">&#9664;</a>
+    <p class="day">{{day}}</p>
+  </header> -->
+<div class="page page-view-admin-kid-feed">
+  <ul class="unstyled kids-wrapper">
+    <li ng-repeat="kid in kids" class="kid-list-item">
+    <span class="avatar avatar-{{kid.avatar.color}}">
+      <i class="icon icon-{{kid.avatar.icon}}"></i>
+      <span class="kid-name">{{kid.name}}</span>
+    </span>
+    <span class="kid-points">{{kid.points}} points</span> 
+    </li>
+  </ul>
+</div>  

@@ -16,7 +16,7 @@ var express = require('express')
 if(process.env.NODE_ENV === 'production'){
   mongoose.connect(process.env.MONGOHQ_URL);
 } else {
-  mongoose.connect('mongodb://localhost/dangle');
+  mongoose.connect('mongodb://localhost/diggydo');
 }
 
 

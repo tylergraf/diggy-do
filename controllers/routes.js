@@ -27,7 +27,8 @@ var angularRoutes = [
   '/admin-edit-chore/:id',
   '/admin-edit-kid/:id',
   '/admin-edit-reward',
-  '/admin-chore-feed'
+  '/admin-chore-feed',
+  '/admin-kid-feed'
 ];
 module.exports = function(app) {
   angularRoutes.forEach(function(r) {

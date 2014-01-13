@@ -4,10 +4,10 @@
     <a class="btn btn-green" ng-tap="navigate('RL','/admin-add-chore','/admin-chores')"><i class="icon icon-plus"></i></a>
     <h3>Add New Chore</h3>
   </section>
-  <section class="admin-chores-filter">
+  <!-- <section class="admin-chores-filter">
     <span class="btn btn-green">Filter</span>
     <span class="btn btn-green">Sort</span>
-  </section>
+  </section> -->
   <section class="admin-chores">
     <ul class="unstyled task-list">
       <li ng-repeat="task in tasks | orderBy:'+_kid._id'" class="task-list-item" ng-tap="navigate('RL','/admin-edit-chore/{{task._id}}')">
