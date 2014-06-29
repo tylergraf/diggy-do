@@ -31,15 +31,34 @@
       </div>
     </span>
     <span class="dashboard-list-item">
-      <span class="icon-wrapper username-edit" ng-tap="editAvatar()"><i class="icon icon-edit"></i></span>
+      <span class="icon-wrapper username-edit" ng-tap="openAvatarChooser()"><i class="icon icon-edit"></i></span>
       <span class="column-1">Avatar</span>
       <span class="avatar avatar-{{user.avatar.color}}"><i class="icon icon-{{user.avatar.icon}}"></i></span>
     </span>
     <span class="dashboard-list-item">
-      <span class="icon-wrapper username-edit" ng-tap="editPassword()"><i class="icon icon-edit"></i></span>
+      <span class="icon-wrapper password-edit" ng-tap="editPassword()"><i class="icon icon-edit"></i></span>
       <span class="column-1">Password</span>
-      <span class="column-2">•••••••••</span>
+      <span class="column-2" id="password">•••••••••</span>
+      <div class="edit-password-wrapper hide" id="passwordInput">
+        <form class="form form-inline form-password" ng-submit="savePassword(user.password)">
+
+        <div class="input-wrapper password-input"><input class="column-2" type="password" ng-model="user.password"></div>
+        <button class="btn btn-green" type="submit">Save</button>
+        </form>
+      </div>
     </span>
+    <!-- <span class="dashboard-list-item">
+      <span class="icon-wrapper passcode-edit" ng-tap="editPasscode()"><i class="icon icon-edit"></i></span>
+      <span class="column-1">passcode</span>
+      <span class="column-2" id="passcode">•••••••••</span>
+      <div class="edit-passcode-wrapper hide" id="passcodeInput">
+        <form class="form form-inline form-passcode" ng-submit="savePasscode(user.passcode)">
+
+        <div class="input-wrapper passcode-input"><input class="column-2" type="passcode" ng-model="user.password"></div>
+        <button class="btn btn-green" type="submit">Save</button>
+        </form>
+      </div>
+    </span> -->
   </section>
 
     <span ng-tap="navigate('RL','/admin/chores')" class="dashboard-list-item">
@@ -50,3 +69,5 @@
   <p><a class="btn btn-red btn-full" ng-tap="logOutCompletely()"><i class="icon icon-exit"></i>Log Out Completely</a></p>
   <!-- <p><a class="btn btn-blue" ng-tap="navigate('RL','/add-chore')">Add Chores</a></p> -->
 </div>
+
+<dd-choose-avatar class="hide" current-icon="user.avatar.icon">

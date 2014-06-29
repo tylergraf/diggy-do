@@ -12,8 +12,10 @@
   </div>
     <ul class="unstyled table-list task-list">
       <li ng-repeat="task in tasks | filter:filterExpr" class="table-list-item task-list-item approved-{{task.approved}}" ng-swipe-right="transact(task)" ng-swipe-left="transact(task)">
+        <i class="icon icon-ruby"></i>
         <span class="value">{{task.value}}</span>
-        <span class="done-{{task.done}}">{{task.name}}</span> <span class="approved-{{task.approved}}">approved</span>
+        <span class="done-{{task.done}}">{{task.name}}</span>
+        <span ng-show="task.approved" class="task-approved">approved</span>
       </li>
     </ul>
 </div>

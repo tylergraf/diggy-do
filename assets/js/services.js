@@ -27,7 +27,7 @@
 //     }
 //   });
 
-angular.module('dangle.services', ['ngResource']).
+angular.module('diggydo.services', ['ngResource']).
     factory('TaskListService', function($resource){
   return $resource('/api/tasks/:id/:date', {}, {
     query: {method:'GET', isArray:true}

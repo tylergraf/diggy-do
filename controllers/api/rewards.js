@@ -7,9 +7,9 @@ module.exports = function(app) {
   app.get('/api/rewards', r.listAll, function(req, res, next){
     res.json(req.rewards);
   });
-  // app.get('/api/rewards/:id', r.list, function(req, res, next){
-  //   res.json(req.rewards);
-  // });
+  app.get('/api/reward/:id', r.get, function(req, res, next){
+    res.json(req.reward);
+  });
   // app.get('/api/rewards/:id/:date', r.listByDate, function(req, res, next){
   //   res.json(req.rewards);
   // });
@@ -18,13 +18,13 @@ module.exports = function(app) {
     res.json({'stuff':'thingd'});
   });
 
-  // app.put('/api/reward/:id', r.updateReward, function(req, res, next){
-  //   res.json(req.reward);
-  // });
+  app.put('/api/reward/:id', r.updateReward, function(req, res, next){
+    res.json(req.reward);
+  });
   // app.get('/api/reward/:id', r.getReward, function(req, res, next){
   //   res.json(req.reward);
   // });
-  // app.del('/api/reward/:id', r.deleteReward, function(req, res, next){
-  //   res.json({message: "Successfully deleted reward."});
-  // });
+  app.del('/api/reward/:id', r.deleteReward, function(req, res, next){
+    res.json({message: "Successfully deleted reward."});
+  });
 }

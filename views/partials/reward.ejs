@@ -1,0 +1,10 @@
+<div class="page">
+  <%- include _modal-header.ejs %>
+  <div class="avatar avatar-{{reward.avatar.color}}"><i class="icon icon-{{reward.avatar.icon}}"></i></div>
+  <ul class="unstyled table-list">
+    <li class="table-list-item" ng-repeat="reward in rewards" ng-tap="navigate('RL','/reward/'+reward._id)">
+      
+      <span class="item-label">{{reward.name}}</span>
+    </li>
+  </ul>
+</div>

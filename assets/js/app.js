@@ -7,10 +7,10 @@
 //     if(window.location.pathname !== '/homscreen'){
 //       // window.location = '/homescreen';
 //     }
-//   } 
+//   }
 // })()
 // Declare app level module which depends on filters, and services
-angular.module('dangle', ['dangle.filters', 'dangle.services', 'dangle.directives','ngMobile','ngCookies','angularLocalStorage']).
+angular.module('diggydo', ['diggydo.filters', 'diggydo.services', 'diggydo.directives','ngMobile','ngCookies','angularLocalStorage']).
   config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider.
       when('/', {
@@ -48,6 +48,10 @@ angular.module('dangle', ['dangle.filters', 'dangle.services', 'dangle.directive
       when('/rewards', {
         templateUrl: '/partials/rewards',
         controller: RewardsCtrl
+      }).
+      when('/reward/:id', {
+        templateUrl: '/partials/reward',
+        controller: RewardCtrl
       }).
       when('/profile', {
         templateUrl: '/partials/profile',
@@ -106,7 +110,7 @@ angular.module('dangle', ['dangle.filters', 'dangle.services', 'dangle.directive
         templateUrl: '/partials/admin-add-kid',
         controller: EditKidCtrl
       }).
-      when('/admin-edit-reward', {
+      when('/admin-edit-reward/:id', {
         templateUrl: '/partials/admin-add-reward',
         controller: EditRewardCtrl
       }).
@@ -121,10 +125,21 @@ angular.module('dangle', ['dangle.filters', 'dangle.services', 'dangle.directive
   }])
   .run(function($route, $http, $templateCache) {
     angular.forEach($route.routes, function(r) {
-      if (r.templateUrl) { 
+      if (r.templateUrl) {
         $http.get(r.templateUrl, {cache: $templateCache});
       }
     });
+    // $rootScope.$on( "$routeChangeStart", function(event, next, current) {
+    //   if ( $rootScope.loggedUser == null ) {
+    //     // no logged user, we should be going to #login
+    //     if ( next.templateUrl == "partials/login.html" ) {
+    //       // already going to #login, no redirect needed
+    //     } else {
+    //       // not going to #login, we should redirect now
+    //       $location.path( "/login" );
+    //     }
+    //   }
+    // });
   });
 angular.module('ng').run(['$rootScope', function($rootScope) {
     $rootScope.safeApply = function(fn) {

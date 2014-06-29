@@ -25,7 +25,7 @@ strong {
 }
 
 * {
-  -webkit-tap-highlight-color: rgba(0,0,0,0) !important; 
+  -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
 }
 html,
 body {
@@ -348,6 +348,16 @@ input[type=password]:focus {
 .day-view .task-list-item .done-true {
   text-decoration: line-through;
 }
+.day-view .task-list-item .task-approved {
+  color: red;
+  border: 1px solid red;
+  padding: 2px 3px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 10px;
+  margin-left: 10px;
+  transform: rotate(-90deg);
+}
 .task-list-item .avatar {
   float: right;
   height: 35px;
@@ -362,6 +372,28 @@ input[type=password]:focus {
   line-height: 35px;
   font-size: 18px;
   color: #fff;
+}
+.task-list-item > .value {
+  line-height: 58px;
+  font-size: 18px;
+  color: #000;
+  float: right;
+  margin-right: 10px;
+}
+.task-list-item > .icon {
+  line-height: 58px;
+  font-size: 18px;
+  color: #000;
+  float: right;
+}
+body > .icon-ruby {
+  -webkit-transition: all 600ms cubic-bezier(0.000, 0, 1.000, 0); /* older webkit */
+  -webkit-transition: all 600ms cubic-bezier(0.000, -0.275, 1.000, -0.180);
+     -moz-transition: all 600ms cubic-bezier(0.000, -0.275, 1.000, -0.180);
+       -o-transition: all 600ms cubic-bezier(0.000, -0.275, 1.000, -0.180);
+          transition: all 600ms cubic-bezier(0.000, -0.275, 1.000, -0.180); /* custom */
+
+
 }
 .day-view .prev,
 .day-view .prev:hover,
@@ -543,14 +575,66 @@ input[type=password]:focus {
 .avatar.avatar-yellow, .avatar.avatar-yellow a {background-color: #faec00;}
 .avatar.avatar-red, .avatar.avatar-red a {background-color: #e9194b;}
 
+.avatars-wrapper.hide {
+  opacity: 0;
+}
 .avatars-wrapper {
+  margin: 0;
+  position: fixed;
+  top: 100%;
+  background: #fff;
+  transition: top .3s;
+  width: 100%;
+  /*padding: 20px;*/
+}
+
+.avatars-wrapper .close-avatar-chooser {
+  float: right;
+  height: 30px;
+  width: 30px;
+  display: block;
+  margin-top: 20px;
+  font-size: 20px;
+  margin-right: 10px;
+}
+.avatars-wrapper .heading-1 {
+  font-size: 20px;
+  line-height: 30px;
+}
+.avatars-wrapper .avatar .icon {
+  font-size: 27px;
+  display: block;
+  line-height: 56px;
+}
+.avatars-wrapper .avatar {
+  margin-bottom: 20px;
+  width: 55px;
+  height: 55px;
+}
+
+.avatars-wrapper.opening {
+  top: 0;
+}
+.avatars-wrapper.open {
+  top: 0;
+  position: absolute;
+}
+.avatars-wrapper .avatars {
   display: -webkit-flex;
   -webkit-flex-wrap: wrap;
-  margin-top: 20px;
+  width: 100%;
+}
+.avatars-wrapper .avatar {
+  opacity: 0.6;
+}
+
+.avatars-wrapper input {
+  display: none;
 }
 .avatars-wrapper .avatar.selected {
   opacity: 1;
 }
+
 .page-login .main-header-wrapper {
   display: none;
 }
@@ -620,6 +704,9 @@ input[type=password]:focus {
   width: 35px;
   margin-bottom: 0;
   margin-top: 10px;
+}
+.table-list .table-list-item .right {
+  float: right;
 }
 .table-list .table-list-item .avatar .icon {
   line-height: 35px;
@@ -713,10 +800,9 @@ input[type=password]:focus {
   width: 50px
 }
 
-
 /* ADMIN DASHBOARD PAGE */
 .page-admin {
-  background: #bbbdc0; 
+  background: #bbbdc0;
 }
 
 .admin-dashboard-section {
@@ -753,14 +839,17 @@ input[type=password]:focus {
   width: 100px;
   float: left;
 }
+.password-input input,
 .username-input input {
   font-size: 20px;
   height: 27px;
   font-weight: bold;
 }
+.form-password,
 .form-username {
   margin: 0;
 }
+.dashboard-list-item .password-input,
 .dashboard-list-item .username-input {
   float: left;
   border: none;
@@ -768,6 +857,7 @@ input[type=password]:focus {
   padding: 5px 8px;
   width: 80px;
 }
+.edit-password-wrapper .btn,
 .edit-username-wrapper .btn {
   margin-top: 8px;
   margin-left: 10px;
@@ -775,6 +865,13 @@ input[type=password]:focus {
   float: left;
 }
 
+/*ADMIN REWARDS PAGE*/
+.page-admin-rewards {
+  background: #bbbdc0;
+}
+.page-view-admin-rewards {
+  background: #bbbdc0;
+}
 /*ADMIN KID FEED PAGE*/
 .page-view-admin-kid-feed .kid-name {
   color: #231F20;
@@ -800,21 +897,21 @@ input[type=password]:focus {
 .page-admin-chores {
   background: #bbbdc0;
 }
-.admin-chores-header {
+.admin-list-header {
   display: -webkit-box;
   padding: 20px;
   padding-right: 100px;
 }
-.admin-chores-header .btn {
+.admin-list-header .btn {
   height: 60px;
   width: 60px;
   margin-right: 20px;
 }
-.admin-chores-header .btn .icon {
+.admin-list-header .btn .icon {
   font-size: 40px;
   line-height: 60px;
 }
-.admin-chores-header h3 {
+.admin-list-header h3 {
   font-size: 40px;
   text-transform: uppercase;
 }
@@ -855,7 +952,7 @@ input[type=password]:focus {
 }
 .task-name-wrapper {
   background: #e9194b;
-  padding: 10px; 
+  padding: 10px;
   border-bottom: 4px solid #9d1c52;
 }
 .section-heading {
@@ -990,7 +1087,7 @@ input[type=password]:focus {
 .submit-actions {
   border-top: 5px solid #a7a9ab;
   margin-top: 10px;
-  display: -webkit-box; 
+  display: -webkit-box;
 }
 .submit-actions .submit-action {
   width: 70px;
@@ -1015,51 +1112,59 @@ input[type=password]:focus {
   font-size: 35px;
 }
 
-
+.page-admin,
 .page-admin-kids,
 .page-admin-add-kid {
   background: #bbbdc0;
 }
-.form-add-kid input[type=radio] {
+.form-add input[type=radio] {
   display: none;
 }
-.form-add-kid .avatar .icon.icon-check {
+.form-add .avatar .icon.icon-check {
   display: none;
 }
-.form-add-kid input[type=radio]:checked + .avatar .icon.icon-check {
+.form-add input[type=radio]:checked + .avatar .icon.icon-check {
   display: block;
 }
-.form-add-kid input[type=radio]:checked + .avatar {
+.form-add input[type=radio]:checked + .avatar {
   opacity: 1;
 }
-.form-add-kid .input-wrapper {
+.form-add .input-wrapper {
   margin: 10px;
 }
-.form-add-kid .form-actions {
+.form-add .form-actions {
   margin-left: 10px;
   padding: none;
   background: none;
   border: none;
 }
-.form-add-kid .avatar-color-label {
+.form-add .avatar-color-label {
   margin-top: 10px;
   margin-left: 10px;
 }
-.form-add-kid .avatar-color {
+.form-add .avatar-color-wrapper {
   display: -webkit-flex;
   -webkit-flex-wrap: wrap;
 }
-.form-add-kid .avatar {
+.form-add .avatar-icon-wrapper {
+  display: -webkit-flex;
+  -webkit-flex-wrap: wrap;
+}
+.form-add .avatar-icon-wrapper .btn {
+  margin-left: 10px;
+  margin-top: 0;
+}
+.form-add .avatar {
   height: 35px;
   width: 35px;
   margin-bottom: 10px;
   margin-right: 0px;
   margin-left: 10px;
 }
-.form-add-kid .avatars-wrapper .avatar {
+.form-add .avatars-wrapper .avatar {
   opacity: 0.6;
 }
-.form-add-kid .avatar .icon{
+.form-add .avatar .icon{
   line-height: 35px;
   font-size: 20px;
 }
@@ -1081,7 +1186,7 @@ input[type=password]:focus {
 }
 
 .transition-BT .view-enter {
-  -webkit-transform:translate3d(0,100%,0)  
+  -webkit-transform:translate3d(0,100%,0)
 }
 .transition-BT .view-enter.view-enter-active {
   -webkit-transform:translate3d(0,0,0)
@@ -1091,11 +1196,11 @@ input[type=password]:focus {
   -webkit-transform:translate3d(0,0,0)
 }
 .transition-BT .view-leave.view-leave-active {
-  -webkit-transform:translate3d(0,0,0) 
+  -webkit-transform:translate3d(0,0,0)
 }
 
 .transition-TB .view-enter {
-  -webkit-transform:translate3d(0,0,0)  
+  -webkit-transform:translate3d(0,0,0)
 }
 .transition-TB .view-enter.view-enter-active {
   -webkit-transform:translate3d(0,0,0)
@@ -1105,11 +1210,11 @@ input[type=password]:focus {
   -webkit-transform:translate3d(0,0,0)
 }
 .transition-TB .view-leave.view-leave-active {
-  -webkit-transform:translate3d(0,100%,0) 
+  -webkit-transform:translate3d(0,100%,0)
 }
 
 .transition-RL .view-enter {
-  -webkit-transform:translate3d(100%,0,0)  
+  -webkit-transform:translate3d(100%,0,0)
 }
 .transition-RL .view-enter.view-enter-active {
   -webkit-transform:translate3d(0,0,0)
@@ -1119,11 +1224,11 @@ input[type=password]:focus {
   -webkit-transform:translate3d(0,0,0)
 }
 .transition-RL .view-leave.view-leave-active {
-  -webkit-transform:translate3d(-100%,0,0) 
+  -webkit-transform:translate3d(-100%,0,0)
 }
 
 .transition-LR .view-enter {
-  -webkit-transform:translate3d(-100%,0,0)  
+  -webkit-transform:translate3d(-100%,0,0)
 }
 .transition-LR .view-enter.view-enter-active {
   -webkit-transform:translate3d(0,0,0)
@@ -1133,40 +1238,40 @@ input[type=password]:focus {
   -webkit-transform:translate3d(0,0,0)
 }
 .transition-LR .view-leave.view-leave-active {
-  -webkit-transform:translate3d(100%,0,0) 
+  -webkit-transform:translate3d(100%,0,0)
 }
 
 .transition-fade .view-enter {
   /*-webkit-transform:translate3d(-100%,0,0)*/
-  opacity: 0;  
+  opacity: 0;
 }
 .transition-fade .view-enter.view-enter-active {
   /*-webkit-transform:translate3d(0,0,0)*/
-  opacity: 1;  
+  opacity: 1;
 }
 .transition-fade .view-leave {
   /*-webkit-transform:translate3d(0,0,0)*/
-  opacity: 1;  
+  opacity: 1;
 }
 .transition-fade .view-leave.view-leave-active {
   /*-webkit-transform:translate3d(100%,0,0) */
-  opacity: 0;  
+  opacity: 0;
 }
 /*
 
-.enter-active {   
+.enter-active {
   -webkit-transition: 0.3s ease all;
-  -webkit-transform:translate3d(100%,0,0)  
-}  
-.enter-active.enter-start {  
+  -webkit-transform:translate3d(100%,0,0)
+}
+.enter-active.enter-start {
   -webkit-transform:translate3d(0,0,0)
-}  
-.leave-active {   
+}
+.leave-active {
   -webkit-transition: 0.3s ease all;
   -webkit-transform:translate3d(0,0,0)
-} 
-.leave-active.leave-start {   
-  -webkit-transform:translate3d(-100%,0,0) 
+}
+.leave-active.leave-start {
+  -webkit-transform:translate3d(-100%,0,0)
 }
 */
 
@@ -1174,17 +1279,17 @@ input[type=password]:focus {
   position:absolute;
   -webkit-transition: 0.5s ease-out all;
   -webkit-transform:translate3d(-100%,0,0)
-}  
-.enter-setup.enter-start {   
+}
+.enter-setup.enter-start {
   position:absolute;
-   -webkit-transform:translate3d(0,0,0) 
- }  
-.leave-setup {   
+   -webkit-transform:translate3d(0,0,0)
+ }
+.leave-setup {
   position:absolute;
   -webkit-transition: 0.5s ease-out all;
   -webkit-transform:translate3d(0,0,0)
-} 
-.leave-setup.leave-start {   
+}
+.leave-setup.leave-start {
   position:absolute;
-  -webkit-transform:translate3d(100%,0,0) 
+  -webkit-transform:translate3d(100%,0,0)
 }*/

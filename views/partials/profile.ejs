@@ -2,7 +2,7 @@
   <%- include _modal-header.ejs %>
   <div class="profile-avatar avatar avatar-{{kid.avatar.color}} avatar-huge">
     <i class="icon icon-{{kid.avatar.icon}}"></i>
-    <a class="btn btn-blue profile-change-avatar"><i class="icon icon-lock"></i>Set Picture</a>
+    <a class="btn btn-blue profile-change-avatar" ng-tap="openAvatarChooser()"><i class="icon icon-lock"></i>Set Picture</a>
   </div>  
 <!--   <div class="coin-style-wrapper">
     <p>Coin Style</p>
@@ -10,6 +10,8 @@
     <a class="btn btn-blue set-coins">Set Coins</a>
 
   </div> -->
-  <a class="btn btn-blue btn-full"><i class="icon icon-lock"></i>Change Passcode</a>
+  <!-- <a class="btn btn-blue btn-full"><i class="icon icon-lock"></i>Change Passcode</a> -->
   <a class="btn btn-blue btn-full" ng-tap="logOut();"><i class="icon icon-exit"></i>Log Out</a>
 </div>
+
+<dd-choose-avatar class="hide" current-icon="kid.avatar.icon">

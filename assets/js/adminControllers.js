@@ -12,6 +12,7 @@ function KidFeedCtrl($scope, $rootScope, $cookieStore, $http) {
   }
 
   $rootScope.modal = false;
+  $rootScope.pageAdmin = true;
   $rootScope.pageName = 'kid-feed';
   $rootScope.pageTitle = 'Children\'s Progress';
   $rootScope.headerColor = 'red';
@@ -34,7 +35,7 @@ function KidFeedCtrl($scope, $rootScope, $cookieStore, $http) {
   //     id = ($rootScope.currentKid) ? $rootScope.currentKid._id : null,
   //     date = currentDate.unix(),
   //     url = "/api/tasks/all/";
-  
+
   // $scope.filterExpr = {done: false};
   // console.log($scope.filterExpr);
   // $scope.day = currentDate.format('dddd'),
@@ -54,7 +55,7 @@ function KidFeedCtrl($scope, $rootScope, $cookieStore, $http) {
 
   //   getList($http, url, date);
   // }
-  
+
   // function getList(agent, url, date) {
   //   agent.get(url+date)
   //     .success(function(data) {
@@ -80,7 +81,7 @@ function ChoreFeedCtrl($scope, $rootScope, $cookieStore, $http) {
       // property = attr.property,
       date = currentDate.unix(),
       url = (id) ? 'api/tasks/'+id : 'api/tasks/all';
-    
+
   $scope.filterExpr = {done: false};
   console.log($scope.filterExpr);
   console.log($scope.feed);
@@ -120,7 +121,7 @@ function ChoreFeedCtrl($scope, $rootScope, $cookieStore, $http) {
         taskIndex = $scope.tasks.indexOf(task);
 
         console.log(task);
-        
+
     if(!task.approved || task.approving){
       task.done = (!task.done);
       if(task.transactionId){
@@ -163,7 +164,7 @@ function ChoreFeedCtrl($scope, $rootScope, $cookieStore, $http) {
       .success(function(data, status, headers, config) {
         $scope.tasks = data;
         totalCounts(data)
-        
+
       })
       .error(function(error) {
         done(error);
@@ -182,6 +183,7 @@ function AddChoreCtrl($scope, $rootScope, $cookieStore, $http) {
   $rootScope.backURL = '/admin-chores';
   $rootScope.hideMainNav = true;
   $rootScope.modal = true;
+  $rootScope.pageAdmin = true;
   $rootScope.pageName = 'add-chore';
   $rootScope.pageTitle = 'Add Chore';
   $rootScope.headerColor = 'red';
@@ -193,7 +195,7 @@ function AddChoreCtrl($scope, $rootScope, $cookieStore, $http) {
     });
 
   $scope.isDisabled = false;
-  
+
   $scope.checkIfDisabled = function() {
     if($scope.task && $scope.task._kid && $scope.task.repeated && $scope.task.value){
       $scope.isDisabled = false;
@@ -205,7 +207,7 @@ function AddChoreCtrl($scope, $rootScope, $cookieStore, $http) {
     if(!$scope.task.repeated){$scope.task.repeated = {}};
 
     var toggled = document.getElementById(day).classList.toggle('selected');
-    $scope.task.repeated[day] = toggled; 
+    $scope.task.repeated[day] = toggled;
 
     $scope.checkIfDisabled();
   }
@@ -246,6 +248,7 @@ function AddKidCtrl($scope, $rootScope, $cookieStore, $http) {
 
   $rootScope.backURL = '/admin-kids';
   $rootScope.modal = true;
+  $rootScope.pageAdmin = true;
   $rootScope.pageName = 'admin-add-kid';
   $rootScope.pageTitle = 'Add Kid';
   $rootScope.headerColor = 'red';
@@ -255,6 +258,7 @@ function AddKidCtrl($scope, $rootScope, $cookieStore, $http) {
 
   $scope.saveKid = function(kid) {
     console.log(kid);
+    kid.avatar.icon = $scope.chosenAvatarIcon;
     // var kid = $rootScope.tempKid;
     // delete $rootScope.tempKid;
     $http.post('/api/kid',{kid: kid})
@@ -278,12 +282,15 @@ function AddRewardCtrl($scope, $rootScope, $cookieStore, $http) {
 
   $rootScope.backURL = '/admin-rewards';
   $rootScope.modal = true;
+  $rootScope.pageAdmin = true;
   $rootScope.pageName = 'admin-add-rewards';
   $rootScope.pageTitle = 'Add Reward';
   $rootScope.headerColor = 'red';
   $rootScope.pageIcon = 'settings';
 
-  $scope.addReward = function(reward) {
+  $scope.type = 'add';
+
+  $scope.saveReward = function(reward) {
     if(reward.name && reward.value){
       // reward.avatar = {color: 'blue', icon: 'ice-cream'};
 
@@ -308,6 +315,7 @@ function EditChoreCtrl($scope, $rootScope, $cookieStore, $http, $routeParams) {
 
   $rootScope.backURL = '/admin-chores';
   $rootScope.modal = true;
+  $rootScope.pageAdmin = true;
   $rootScope.pageName = 'admin-edit-chore';
   $rootScope.pageTitle = 'Edit Chore';
   $rootScope.headerColor = 'red';
@@ -341,7 +349,7 @@ function EditChoreCtrl($scope, $rootScope, $cookieStore, $http, $routeParams) {
   $scope.toggleDay = function(day) {
 
     var toggled = document.getElementById(day).classList.toggle('selected');
-    $scope.task.repeated[day] = toggled; 
+    $scope.task.repeated[day] = toggled;
 
   }
   $scope.saveTask = function(task) {
@@ -359,18 +367,19 @@ function EditChoreCtrl($scope, $rootScope, $cookieStore, $http, $routeParams) {
           $rootScope.navigate('LR','/admin-chores');
         });
     }
-    
+
   }
 }
 function EditKidCtrl($scope, $rootScope, $cookieStore, $http, $routeParams) {
-  if(!$cookieStore.get('currentKid')) {
-    return $rootScope.navigate('fade','/');
-  } else if(!$cookieStore.get('currentKid').admin){
-    return $rootScope.navigate('fade','/chores');
-  }
+  // if(!$cookieStore.get('currentKid')) {
+  //   return $rootScope.navigate('fade','/');
+  // } else if(!$cookieStore.get('currentKid').admin){
+  //   return $rootScope.navigate('fade','/chores');
+  // }
 
   $rootScope.backURL = '/admin-kids';
   $rootScope.modal = true;
+  $rootScope.pageAdmin = true;
   $rootScope.pageName = 'admin-add-kid';
   $rootScope.pageTitle = 'Edit Kid';
   $rootScope.headerColor = 'red';
@@ -387,6 +396,7 @@ function EditKidCtrl($scope, $rootScope, $cookieStore, $http, $routeParams) {
   // delete $rootScope.tempEditKid;
   $scope.saveKid = function(kid) {
     console.log(kid);
+
     $http.put('/api/kid/'+kidId,{kid: kid})
       .success(function(data, status, headers, config) {
         $rootScope.navigate('LR','/admin-kids');
@@ -402,7 +412,42 @@ function EditKidCtrl($scope, $rootScope, $cookieStore, $http, $routeParams) {
     }
   }
 }
-function EditRewardCtrl($scope, $rootScope, $cookieStore, $http) {
+function EditRewardCtrl($scope, $rootScope, $cookieStore, $routeParams, $http) {
+  $rootScope.backURL = '/admin-rewards';
+  $rootScope.modal = true;
+  $rootScope.pageAdmin = true;
+  $rootScope.pageName = 'admin-add-reward';
+  $rootScope.pageTitle = 'Edit Reward';
+  $rootScope.headerColor = 'red';
+  $rootScope.pageIcon = 'settings';
+
+  $scope.type = 'edit';
+
+  var rewardId = $routeParams.id;
+  $http.get('/api/reward/'+rewardId)
+    .success(function(data, status, headers, config) {
+      $scope.reward = data;
+      console.log($scope.reward);
+    });
+  // $scope.kid = $rootScope.tempEditKid;
+  // delete $rootScope.tempEditKid;
+  $scope.saveReward = function(reward) {
+    console.log(reward);
+
+    $http.put('/api/reward/'+rewardId,{reward: reward})
+      .success(function(data, status, headers, config) {
+        $rootScope.navigate('LR','/admin-rewards');
+      });
+  }
+  $scope.deleteReward = function(rewardId) {
+    var r = confirm("Are you sure you want to delete "+ $scope.reward.name +"?");
+    if(r){
+      $http.delete('/api/reward/'+kidId)
+        .success(function(data, status, headers, config) {
+          $rootScope.navigate('LR','/admin-rewards');
+        });
+    }
+  }
 }
 
 
@@ -415,10 +460,12 @@ function AdminCtrl($scope, $rootScope, $cookieStore, $http, $location, $routePar
 
   $rootScope.backURL = '/admin-chore-feed';
   $rootScope.modal = true;
+  $rootScope.pageAdmin = true;
   $rootScope.pageName = 'admin';
   $rootScope.pageTitle = 'Admin';
   $rootScope.headerColor = 'red';
   $rootScope.pageIcon = 'settings';
+
 
   $scope.user = storage.get('dd_user')
   console.log($scope.user);
@@ -437,7 +484,12 @@ function AdminCtrl($scope, $rootScope, $cookieStore, $http, $location, $routePar
     .success(function(data, status, headers, config) {
         $scope.rewardCount = data.length;
       });
-  
+  var loaded = 0;
+
+  $scope.$watch('user.avatar.icon', function(){
+
+    console.log('asdf')
+  });
   $scope.editUsername = function() {
     angular.element(document.getElementById('username')).toggleClass('hide');
     angular.element(document.getElementById('usernameInput')).toggleClass('hide');
@@ -454,16 +506,29 @@ function AdminCtrl($scope, $rootScope, $cookieStore, $http, $location, $routePar
         angular.element(document.getElementById('usernameInput')).toggleClass('hide');
       })
       .error(function(err) {
-        
+
       });
   }
   $scope.editAvatar = function() {
-    
+
   }
   $scope.editPassword = function() {
-    
+    angular.element(document.getElementById('password')).toggleClass('hide');
+    angular.element(document.getElementById('passwordInput')).toggleClass('hide');
+    document.querySelector('#passwordInput input').focus();
+    document.querySelector('#passwordInput input').select();
   }
 
+  $scope.savePassword = function(password) {
+    $http.put('/api/user/password',{password: password})
+      .success(function(data, status, headers, config) {
+        angular.element(document.getElementById('password')).toggleClass('hide');
+        angular.element(document.getElementById('passwordInput')).toggleClass('hide');
+      })
+      .error(function(err) {
+
+      });
+  }
 }
 function AdminChoresCtrl($scope, $rootScope, $cookieStore, $http, $location, $routeParams) {
   if(!$cookieStore.get('currentKid')) {
@@ -474,11 +539,12 @@ function AdminChoresCtrl($scope, $rootScope, $cookieStore, $http, $location, $ro
 
   $rootScope.backURL = '/admin';
   $rootScope.modal = true;
+  $rootScope.pageAdmin = true;
   $rootScope.pageName = 'admin-chores';
   $rootScope.pageTitle = 'Chores';
   $rootScope.headerColor = 'red';
   $rootScope.pageIcon = null;
-  
+
   $http.get('/api/tasks/all')
     .success(function(data, status, headers, config) {
         $scope.tasks = data;
@@ -496,11 +562,12 @@ function AdminKidsCtrl($scope, $rootScope, $cookieStore, $http, $location, $rout
 
   $rootScope.backURL = '/admin';
   $rootScope.modal = true;
+  $rootScope.pageAdmin = true;
   $rootScope.pageName = 'admin-kids';
   $rootScope.pageTitle = 'Kids';
   $rootScope.headerColor = 'red';
   $rootScope.pageIcon = null;
-  
+
   $http.get('/api/kids')
     .success(function(data, status, headers, config) {
         $scope.kids = data;
@@ -521,11 +588,12 @@ function AdminRewardsCtrl($scope, $rootScope, $cookieStore, $http, $location, $r
 
   $rootScope.backURL = '/admin';
   $rootScope.modal = true;
+  $rootScope.pageAdmin = true;
   $rootScope.pageName = 'admin-rewards';
   $rootScope.pageTitle = 'Rewards';
   $rootScope.headerColor = 'red';
   $rootScope.pageIcon = null;
-  
+
   $http.get('/api/rewards')
     .success(function(data, status, headers, config) {
         $scope.rewards = data;

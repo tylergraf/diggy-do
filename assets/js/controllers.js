@@ -5,7 +5,7 @@
 // ****************
 
 function IndexCtrl($scope, $rootScope, $cookieStore, storage, $http) {
-  
+  $rootScope.pageAdmin = false;
   $http.get('/api/kids/').
     success(function(data, status, headers, config) {
       // $scope.kids = data;
@@ -37,11 +37,12 @@ function IndexCtrl($scope, $rootScope, $cookieStore, storage, $http) {
 
 function CreateAccountCtrl($scope, $rootScope, $cookieStore, storage, $http) {
   $rootScope.modal = true;
+  $rootScope.pageAdmin = false;
   $rootScope.pageName = 'create-account';
   $rootScope.pageTitle = 'diggy do';
   $rootScope.headerColor = 'purple';
   $rootScope.pageIcon = 'ruby';
-  
+
   $scope.c = function(user) {
     console.log(user);
     if(typeof user === 'undefined'){ return alert('You must enter a valid name, email, and password.');}
@@ -59,22 +60,23 @@ function CreateAccountCtrl($scope, $rootScope, $cookieStore, storage, $http) {
           error(function(err, status, headers, config) {
             alert(err.message)
           });
-      
+
   }
 
-  function validateEmail(email) { 
+  function validateEmail(email) {
     var re = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
     return re.test(email);
-  } 
+  }
 }
 function HomeScreenCtrl($scope, $rootScope, $cookieStore, storage, $http) {
-  
+
 }
 function KidsCtrl($scope, $rootScope, $cookieStore, storage, $http, $routeParams) {
   if($cookieStore.get('currentKid')) {
     return $rootScope.navigate('fade','/chores');
   }
   $rootScope.pageName = 'login';
+  $rootScope.pageAdmin = false;
   $rootScope.pageTitle = 'diggy do';
   $rootScope.headerColor = 'purple';
   $rootScope.pageIcon = 'ruby';
@@ -100,6 +102,7 @@ function TasksCtrl($scope, $rootScope, $cookieStore, storage, $http, $routeParam
     return $rootScope.navigate('fade','/');
   }
   $rootScope.modal = false;
+  $rootScope.pageAdmin = false;
   $rootScope.pageName = 'chores';
   $rootScope.pageTitle = 'diggy do';
   $rootScope.headerColor = 'purple';
@@ -113,7 +116,7 @@ function TasksCtrl($scope, $rootScope, $cookieStore, storage, $http, $routeParam
   $rootScope.pageTitle = 'diggy do';
   $rootScope.headerColor = 'purple';
   $rootScope.pageIcon = 'check-mark';
-  
+
 
   var currentDate = moment(),
       id = ($cookieStore.get('currentKid')) ? $cookieStore.get('currentKid')._id : null,
@@ -141,13 +144,13 @@ function TasksCtrl($scope, $rootScope, $cookieStore, storage, $http, $routeParam
 
     getList($http, url, date);
   }
-  
-  $scope.transact = function(task) {
+
+  $scope.transact = function(task, index) {
     var date = currentDate.unix(),
         taskIndex = $scope.tasks.indexOf(task);
 
         console.log(task);
-        
+
     if(!task.approved){
       task.done = (!task.done);
       if(task.transactionId){
@@ -158,6 +161,40 @@ function TasksCtrl($scope, $rootScope, $cookieStore, storage, $http, $routeParam
             totalCounts($scope.tasks)
           });
       } else {
+        // EXPLOSION EFFECT
+        // var el = angular.element(document.querySelectorAll('.task-list-item')[taskIndex]),
+        //     iconEl = document.querySelectorAll('.icon-ruby')[taskIndex],
+        //     top = iconEl.offsetTop,
+        //     left = iconEl.offsetLeft,
+        //     els = [];
+        //
+        // for (var i = 10 - 1; i >= 0; i--) {
+        //   els.push(angular.element(iconEl).clone().css({
+        //     position: 'absolute',
+        //     top: top+70+'px',
+        //     left: left+'px',
+        //     'font-size': '18px'
+        //   }));
+        //
+        // };
+        // for (var i = els.length - 1; i >= 0; i--) {
+        //   angular.element(document.querySelectorAll('body')).append(els[i]);
+        // };
+        //
+        // setTimeout(function() {
+        //   for (var i = els.length - 1; i >= 0; i--) {
+        //     els[i].css({top: '350px'});
+        //     els[i].css({left: left+Math.floor(Math.random() * 10) + 1+'px'});
+        //   };
+        // }, 100)
+        //
+        // setTimeout(function() {
+        //   for (var i = els.length - 1; i >= 0; i--) {
+        //     els[i].remove();
+        //   };
+        // }, 600)
+
+
         $http.post('/api/transaction/',{date: date, _kid: task._kid, _task: task._id}).
           success(function(data, status, headers, config) {
             console.log(data);
@@ -190,14 +227,14 @@ function TasksCtrl($scope, $rootScope, $cookieStore, storage, $http, $routeParam
       .success(function(data, status, headers, config) {
         $scope.tasks = data;
         totalCounts(data)
-        
+
       })
       .error(function(error) {
         done(error);
       });
 
     }
-    
+
   }
 
 function getTaskList(agent,id,date, cb) {
@@ -245,7 +282,30 @@ function RewardsCtrl($scope, $rootScope, $cookieStore, storage, $http, $routePar
       console.log(data);
       $scope.rewards = data;
     });
-  
+
+}
+function RewardCtrl($scope, $rootScope, $cookieStore, $http, $routeParams) {
+  if(!$cookieStore.get('currentKid')) {
+    return $rootScope.navigate('fade','/');
+  }
+
+  var rewardId = $routeParams.id;
+
+  $rootScope.backURL = '/rewards';
+  $rootScope.modal = true;
+  $rootScope.pageAdmin = false;
+  $rootScope.pageName = 'rewards';
+  $rootScope.pageTitle = 'Reward';
+  $rootScope.headerColor = 'red';
+  $rootScope.pageIcon = 'reward';
+
+
+  $http.get('/api/reward/'+rewardId).
+    success(function(data, status, headers, config) {
+      // $scope.kids = data;
+      console.log(data);
+      $scope.reward = data;
+    });
 }
 function ProfileCtrl($scope, $rootScope, $cookieStore, storage, $http, $location, $routeParams) {
   if(!$cookieStore.get('currentKid')) {
@@ -254,6 +314,7 @@ function ProfileCtrl($scope, $rootScope, $cookieStore, storage, $http, $location
 
   $rootScope.backURL = '/chores';
   $rootScope.modal = true;
+  $rootScope.pageAdmin = false;
   $rootScope.pageName = 'profile';
   $rootScope.pageTitle = 'Me';
   $rootScope.headerColor = 'blue';
@@ -261,7 +322,24 @@ function ProfileCtrl($scope, $rootScope, $cookieStore, storage, $http, $location
 
   $scope.kid = $cookieStore.get('currentKid');
   console.log($scope.kid);
-  
+
+  $scope.$watch('chosenAvatarIcon',function() {
+    if($scope.chosenAvatarIcon){
+      $scope.kid.avatar.icon = $scope.chosenAvatarIcon;
+
+      var kidId = $scope.kid._id,
+          kid = {avatar: $scope.kid.avatar};
+
+      $http.put('/api/kid/'+kidId, {kid: kid}).
+        success(function(data, status, headers, config) {
+          // $scope.kids = data;
+          console.log(data);
+
+          $cookieStore.put('currentKid',$scope.kid);
+
+        });
+    }
+  });
 }
 function PassCodeCtrl($scope, $rootScope, $cookieStore, storage, $http, $location, $routeParams) {
   if(!$rootScope.tempKid) {
@@ -270,6 +348,7 @@ function PassCodeCtrl($scope, $rootScope, $cookieStore, storage, $http, $locatio
 
   $rootScope.pageName = 'passcode';
   $rootScope.modal = true;
+  $rootScope.pageAdmin = false;
 
   $scope.focus = function() {
     document.querySelector('.passcode-input').focus();
@@ -291,13 +370,13 @@ function PassCodeCtrl($scope, $rootScope, $cookieStore, storage, $http, $locatio
   });
 
 
-  
+
 }
 
 function LoginCtrl($scope, $rootScope, $cookieStore, storage, $http, $location) {
-
   $rootScope.pageName = 'login';
   $rootScope.modal = true;
+  $rootScope.pageAdmin = false;
   var currentUser = storage.get('dd_user');
   $scope.currentUserExists = (currentUser);
   if(currentUser){
@@ -335,6 +414,7 @@ function ChooseAvatarCtrl($scope, $rootScope, $cookieStore, storage, $http, $loc
 
   $rootScope.backURL = '/admin-add-kid';
   $rootScope.modal = true;
+  $rootScope.pageAdmin = false;
   $rootScope.pageName = 'choose-avatar';
   $rootScope.pageTitle = 'Choose Avatar';
   $rootScope.headerColor = 'red';
@@ -353,6 +433,7 @@ function ChooseAvatarCtrl($scope, $rootScope, $cookieStore, storage, $http, $loc
 function navCtrl($scope, $rootScope, $cookieStore, storage, $http, $location) {
   $rootScope.direction = 'fade';
   $rootScope.navigate = function(direction, path, backURL) {
+    $rootScope.$broadcast('navigate');
     $rootScope.backURL = (backURL) ? backURL : $rootScope.backURL;
     $rootScope.direction = direction;
     $location.path(path);
@@ -375,30 +456,30 @@ function navCtrl($scope, $rootScope, $cookieStore, storage, $http, $location) {
 
       $rootScope.navType = 'admin';
       $rootScope.nav = [
-        {icon: 'check-mark', URL: '/admin-chore-feed'},
-        {icon: 'profile', URL: '/admin-kid-feed'},
-        {icon: 'reward', URL: '/admin-rewards'}
+        {icon: 'check-mark', URL: '/admin-chore-feed', direction: 'LR'},
+        {icon: 'profile', URL: '/admin-kid-feed', direction: 'LR'},
+        {icon: 'reward', URL: '/admin-rewards', direction: 'RL'}
       ];
     } else {
       $rootScope.grabberLabel = 'Me';
       $rootScope.grabberURL = '/profile';
       $rootScope.navType = 'kid';
       $rootScope.nav = [
-        {icon: 'check-mark', URL: '/chores'},
-        {icon: 'ruby', URL: '/coins'},
-        {icon: 'reward', URL: '/rewards'}
+        {icon: 'check-mark', URL: '/chores', direction: 'LR'},
+        {icon: 'ruby', URL: '/coins', direction: 'LR'},
+        {icon: 'reward', URL: '/rewards', direction: 'RL'}
       ];
       $rootScope.navigate('fade','/chores');
     }
   }
   $rootScope.logOut = function() {
-    $cookieStore.remove('currentKid'); 
+    $cookieStore.remove('currentKid');
     $rootScope.navigate('fade','/');
   };
   $rootScope.logOutCompletely = function() {
     // console.log($cookieStore.get('connect.sid'));
-    $cookieStore.remove('currentKid'); 
-    $cookieStore.remove('connect.sid'); 
+    $cookieStore.remove('currentKid');
+    $cookieStore.remove('connect.sid');
     storage.clearAll();
     $rootScope.navigate('fade','/login');
   };

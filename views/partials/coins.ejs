@@ -4,7 +4,7 @@
     <h3 class="points">{{transactions[0]._kid.points}}</h3>
   </header>
   <ul class="unstyled">
-    <li ng-repeat="transaction in transactions" class="coins-list-item">
+    <li ng-repeat="transaction in transactions | orderBy:'dateUpdated':'reverse'" class="coins-list-item">
       <div class="coins-right">
         <span class="name">{{transaction._task.name}}</span>
         <span class="date">{{transaction.dateUpdated}}</span>

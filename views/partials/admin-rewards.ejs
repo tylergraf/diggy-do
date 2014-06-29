@@ -1,11 +1,14 @@
 <div class="page page-view-admin-rewards">
   <%- include _modal-header.ejs %>
-  <h3 class="heading-1">admin rewards</h3>
-  <a ng-tap="navigate('RL','/admin-add-reward','/admin-rewards')">Add Reward</a>
-  
+  <section class="admin-chores-header admin-list-header">
+    <a class="btn btn-green" ng-tap="navigate('RL','/admin-add-reward','/admin-rewards')"><i class="icon icon-plus"></i></a>
+    <h3>Add New Reward</h3>
+  </section>
+
   <ul class="unstyled table-list">
     <li class="table-list-item" ng-repeat="reward in rewards" ng-tap="navigate('RL','/admin-edit-reward/'+reward._id)">
       <span class="avatar avatar-{{reward.avatar.color}}"><i class="icon icon-{{reward.avatar.icon}}"></i></span>
+      <span class="item-label right">{{reward.value}}</span>
       <span class="item-label">{{reward.name}}</span>
     </li>
   </ul>

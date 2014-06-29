@@ -1,28 +1,35 @@
-<div class="page page-view-admin-add-reward">
+<div class="page page-admin page-view-admin-add-reward admin-add">
   <%- include _modal-header.ejs %>
-  <h3 class="heading-1">Add reward</h3>
-  <form class="form" ng-submit="addReward(reward)">
-    <label>Name</label>
+  <h3 class="heading-1" ng-show="(type === 'add')">Add Reward</h3>
+  <h3 class="heading-1" ng-show="(type === 'edit')">Edit Reward</h3>
+  <form class="form form-add-reward form-add" ng-submit="saveReward(reward)">
     <div class="input-wrapper">
       <input type="text" name="name" ng-model="reward.name" placeholder="Name the reward">
     </div>
-    <label>Value</label>
     <div class="input-wrapper">
       <input type="text" name="value" ng-model="reward.value" placeholder="How much is it worth?">
     </div>
     <p class="avatar-color-label">Avatar Color</p>
-    <section class="avatar-color">
-      <label for="green"><input checked="checked" id="green" value="green" ng-model="reward.avatar.color" type="radio" checked=true><span class="avatar avatar-green"><i class="icon icon-check hide"></i></span></label>    
-      <label for="red"><input id="red" value="red" ng-model="reward.avatar.color" type="radio"><span class="avatar avatar-red"><i class="icon icon-check hide"></i></span></label>    
-      <label for="blue"><input id="blue" value="blue" ng-model="reward.avatar.color" type="radio"><span class="avatar avatar-blue"><i class="icon icon-check hide"></i></span></label>    
-      <label for="yellow"><input id="yellow" value="yellow" ng-model="reward.avatar.color" type="radio"><span class="avatar avatar-yellow"><i class="icon icon-check hide"></i></span></label>    
+    <section class="avatar-color-wrapper">
+      <label for="green"><input checked="checked" id="green" value="green" ng-model="reward.avatar.color" type="radio" checked=true><span class="avatar avatar-green"><i class="icon icon-check hide"></i></span></label>
+      <label for="red"><input id="red" value="red" ng-model="reward.avatar.color" type="radio"><span class="avatar avatar-red"><i class="icon icon-check hide"></i></span></label>
+      <label for="blue"><input id="blue" value="blue" ng-model="reward.avatar.color" type="radio"><span class="avatar avatar-blue"><i class="icon icon-check hide"></i></span></label>
+      <label for="yellow"><input id="yellow" value="yellow" ng-model="reward.avatar.color" type="radio"><span class="avatar avatar-yellow"><i class="icon icon-check hide"></i></span></label>
     </section>
-    <label>Avatar</label>
-    <div class="input-wrapper">
-      <input type="text" name="avatar" ng-model="reward.avatar.icon">
-    </div>
+    <p class="avatar-color-label">Avatar Icon</p>
+    <section class="avatar-icon-wrapper">
+      <span class="avatar avatar-{{reward.avatar.color}}"><i class="icon icon-{{reward.avatar.icon}}"></i></span>
+      <span ng-tap="openAvatarChooser()" class="btn btn-blue">Choose Icon</span>
+    </section>
     <!-- <input type="file" capture="camera" accept="image/*" id="img" name="img" ng-model="reward.avatar.img"> -->
 
-    <button type="submit" class="btn btn-blue">Save</button>
+    <section class="form-actions">
+      <button ng-show="type === 'edit'" type="submit" class="btn btn-green">Save Reward</button>
+      <a ng-show="type === 'edit'" ng-tap="navigate('LR','/admin-rewards')" class="btn btn-orange">Cancel</a>
+      <a ng-show="type === 'edit'" ng-tap="deleteReward(reward._id)" class="btn btn-red">Delete Reward</a>
+      <button ng-show="type === 'add'" type="submit" class="btn btn-green">Add Reward</button>
+    </section>
   </form>
 </div>
+
+<dd-choose-avatar class="hide" current-icon="reward.avatar.icon">

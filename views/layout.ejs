@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>diggy do</title>
-  <meta name="description" content="Dangle">
+  <meta name="description" content="Diggy Do">
   <meta http-equiv="content-type" content="text/html;charset=UTF-8">
 
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -27,18 +27,18 @@
     <% } %>
   <% } %>
 </head>
-<body ng-app="dangle" class="container page-{{pageName}} modal-{{modal}}">
+<body ng-app="diggydo" class="container page-{{pageName}} modal-{{modal}}" ng-class="{'page-admin': pageAdmin}">
   <%- include partials/_nav.ejs %>
   <%- include partials/_grabber.ejs %>
-  
+
 <%- body %>
 
-  
+
   <% if(typeof assets != "undefined" && assets.js) { %>
     <% for(var filename in assets.js) { %>
       <script src="/js/<%= assets.js[filename] %>"></script>
     <% } %>
   <% } %>
-  
+
 </body>
 </html>

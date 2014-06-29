@@ -45,6 +45,9 @@ module.exports = function(app) {
   app.put("/api/user/username", u.saveUsername, function(req, res, next) {
     res.json({username: req.username});
   });
+  app.put("/api/user/password", u.savePassword, function(req, res, next) {
+    res.json({password: req.password});
+  });
   
 }
 

@@ -6,7 +6,7 @@ var m = require('../../lib/middleware.js'),
 module.exports = function(app) {
 
   // TRANSACTIONS
-  app.post('/api/transaction', t.newTransaction, function(req, res, next){
+  app.post('/api/transaction', t.newTransaction, k.updatePoints, function(req, res, next){
     res.json(req.transaction);
   });
   app.put('/api/transaction/:id', t.updateTransaction, k.updatePoints, function(req, res, next){
@@ -18,8 +18,8 @@ module.exports = function(app) {
   app.get('/api/transactions/:id', t.allTransactions, function(req, res, next){
     res.json(req.transactions);
   });
-  app.del('/api/transaction/:id', t.deleteTransaction, function(req, res, next){
+  app.del('/api/transaction/:id', t.deleteTransaction, k.updatePoints, function(req, res, next){
     res.json();
   });
-  
+
 }

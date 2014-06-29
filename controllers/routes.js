@@ -12,6 +12,7 @@ var angularRoutes = [
   '/coins',
   '/coins/:id',
   '/rewards',
+  '/reward/:id',
   '/profile',
   '/passcode',
   '/choose-avatar',
@@ -26,6 +27,7 @@ var angularRoutes = [
   '/admin-add-reward',
   '/admin-edit-chore/:id',
   '/admin-edit-kid/:id',
+  '/admin-edit-reward/:id',
   '/admin-edit-reward',
   '/admin-chore-feed',
   '/admin-kid-feed'
@@ -42,5 +44,5 @@ module.exports = function(app) {
   app.get('/create-account', function(req, res, next) {
     res.render('angular');
   });
-  
+
 }
