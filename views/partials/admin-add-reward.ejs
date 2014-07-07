@@ -23,11 +23,25 @@
     </section>
     <!-- <input type="file" capture="camera" accept="image/*" id="img" name="img" ng-model="reward.avatar.img"> -->
 
-    <section class="form-actions">
+    <!-- <section class="form-actions">
       <button ng-show="type === 'edit'" type="submit" class="btn btn-green">Save Reward</button>
       <a ng-show="type === 'edit'" ng-tap="navigate('LR','/admin-rewards')" class="btn btn-orange">Cancel</a>
       <a ng-show="type === 'edit'" ng-tap="deleteReward(reward._id)" class="btn btn-red">Delete Reward</a>
       <button ng-show="type === 'add'" type="submit" class="btn btn-green">Add Reward</button>
+    </section> -->
+    <section class="submit-actions">
+      <div class="submit-action">
+        <span class="button-label">OK</span>
+        <button type="submit" class="btn btn-green"><i class="icon icon-check"></i></button>
+      </div>
+      <div class="submit-action">
+        <span class="button-label">Cancel</span>
+        <a class="btn btn-orange" ng-tap="navigate('LR','/admin-rewards')"><i class="icon icon-x"></i></a>
+      </div>
+      <div class="submit-action" ng-show="type === 'edit'">
+        <span class="button-label">Delete</span>
+        <a class="btn btn-red" ng-tap="deleteReward(reward._id)"><i class="icon icon-x"></i></a>
+      </div>
     </section>
   </form>
 </div>

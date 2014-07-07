@@ -123,12 +123,47 @@ angular.module('diggydo', ['diggydo.filters', 'diggydo.services', 'diggydo.direc
       });
     $locationProvider.html5Mode(true);
   }])
-  .run(function($route, $http, $templateCache) {
+  .run(function($route, $http, $templateCache, $cookieStore, $rootScope, $location) {
     angular.forEach($route.routes, function(r) {
       if (r.templateUrl) {
         $http.get(r.templateUrl, {cache: $templateCache});
       }
     });
+    $rootScope.navigate = function(direction, path, backURL) {
+      $rootScope.$broadcast('navigate');
+      $rootScope.backURL = (backURL) ? backURL : $rootScope.backURL;
+      $rootScope.direction = direction;
+      $location.path(path);
+    };
+    $rootScope.setNavigation = function(kid){
+      if(kid && kid.admin){
+        $rootScope.grabberLabel = 'Admin';
+        $rootScope.grabberURL = '/admin';
+        $rootScope.navigate('fade','/admin-chore-feed');
+
+        $rootScope.navType = 'admin';
+        $rootScope.nav = [
+          {icon: 'check-mark', URL: '/admin-chore-feed', direction: 'LR'},
+          {icon: 'profile', URL: '/admin-kid-feed', direction: 'LR'},
+          {icon: 'reward', URL: '/admin-rewards', direction: 'RL'}
+        ];
+      } else {
+        $rootScope.grabberLabel = 'Me';
+        $rootScope.grabberURL = '/profile';
+        $rootScope.navType = 'kid';
+        $rootScope.nav = [
+          {icon: 'check-mark', URL: '/chores', direction: 'LR'},
+          {icon: 'ruby', URL: '/coins', direction: 'LR'},
+          {icon: 'reward', URL: '/rewards', direction: 'RL'}
+        ];
+      }
+    }
+
+
+    var currentKid = $cookieStore.get('currentKid');
+    $http.defaults.headers.common['DD-Kid-ID'] = (currentKid) ? currentKid._id : null;
+    $rootScope.setNavigation(currentKid);
+
     // $rootScope.$on( "$routeChangeStart", function(event, next, current) {
     //   if ( $rootScope.loggedUser == null ) {
     //     // no logged user, we should be going to #login

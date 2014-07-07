@@ -32,7 +32,7 @@ module.exports = {
         bcrypt.genSalt(10, function(err, salt) {
           bcrypt.hash(user.password, salt, function(err, cryptedPassword) {
             new User({username: user.username ,email: user.email ,password:cryptedPassword}).save(function(err, user){
-              
+
               callback(null, user);
 
               // passport.authenticate('local',function(){
@@ -81,7 +81,7 @@ module.exports = {
           user.tasks.push(newTask);
           user.save(function(err,task){
             callback(null, task);
-          }); 
+          });
         // }
       }
     });

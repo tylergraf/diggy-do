@@ -7,11 +7,12 @@ var mongoose = require('mongoose'),
 var transactionSchema = new Schema({
     id: ObjectId,
     date: String,
+    value: Number,
     _user: {type: ObjectId, ref: 'Users' },
     _task: {type: ObjectId, ref: 'Tasks' },
     _kid: {type: ObjectId, ref: 'Kids' },
     approved: { type: Boolean, default: false },
-    dateUpdated: { type: Date, default: Date.now },
+    dateUpdated: { type: Date, default: Date.now }
 });
 
 

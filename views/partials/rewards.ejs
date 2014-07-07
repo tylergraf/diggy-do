@@ -1,9 +1,19 @@
-<div class="page">
-  <ul class="unstyled table-list">
+<div class="page page-rewards">
+  <section class="flex-wrapper">
+    <div class="avatar-wrapper" ng-repeat="reward in rewards">
+      <div class="avatar avatar-btn avatar-large avatar-{{reward.avatar.color}}" ng-tap="navigate('RL','/reward/'+reward._id)"><i ng-show="reward.favorite" class="icon icon-star favorite"></i><i class="icon icon-{{reward.avatar.icon}}"></i></div>
+      <div class="avatar-label-wrapper">
+        <div class="">{{reward.name}}</div>
+        <div class="avatar-label-1">{{reward.value}} <i class="icon icon-ruby"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- <ul class="unstyled table-list">
     <li class="table-list-item" ng-repeat="reward in rewards" ng-tap="navigate('RL','/reward/'+reward._id)">
       <span class="avatar avatar-{{reward.avatar.color}}"><i class="icon icon-{{reward.avatar.icon}}"></i></span>
       <span class="item-label right">{{reward.value}}</span>
       <span class="item-label">{{reward.name}}</span>
     </li>
-  </ul>
+  </ul> -->
 </div>

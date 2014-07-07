@@ -195,7 +195,7 @@ function TasksCtrl($scope, $rootScope, $cookieStore, storage, $http, $routeParam
         // }, 600)
 
 
-        $http.post('/api/transaction/',{date: date, _kid: task._kid, _task: task._id}).
+        $http.post('/api/transaction/',{date: date, _kid: task._kid, _task: task._id, value: task.value}).
           success(function(data, status, headers, config) {
             console.log(data);
             task.transactionId = data._id;
@@ -250,6 +250,8 @@ function CoinsCtrl($scope, $rootScope, $cookieStore, storage, $http, $routeParam
   }
 
   $rootScope.hideMainNav = false;
+  $rootScope.modal = false;
+  $rootScope.pageAdmin = false;
   $rootScope.pageName = 'coins';
   $rootScope.pageTitle = 'Coins';
   $rootScope.headerColor = 'orange';
@@ -271,6 +273,9 @@ function RewardsCtrl($scope, $rootScope, $cookieStore, storage, $http, $routePar
     return $rootScope.navigate('fade','/');
   }
 
+  $rootScope.hideMainNav = false;
+  $rootScope.modal = false;
+  $rootScope.pageAdmin = false;
   $rootScope.pageName = 'rewards';
   $rootScope.pageTitle = 'Rewards';
   $rootScope.headerColor = 'red';
@@ -289,7 +294,8 @@ function RewardCtrl($scope, $rootScope, $cookieStore, $http, $routeParams) {
     return $rootScope.navigate('fade','/');
   }
 
-  var rewardId = $routeParams.id;
+  var rewardId = $routeParams.id,
+      kidId = $cookieStore.get('currentKid')._id;
 
   $rootScope.backURL = '/rewards';
   $rootScope.modal = true;
@@ -306,6 +312,21 @@ function RewardCtrl($scope, $rootScope, $cookieStore, $http, $routeParams) {
       console.log(data);
       $scope.reward = data;
     });
+
+  $scope.favoriteReward = function(rewardId){
+    $http.post('/api/favorite/'+rewardId).
+      success(function(data, status, headers, config) {
+        $scope.reward.favorite = true;
+      });
+  }
+
+  $scope.unfavoriteReward = function(rewardId){
+    $http.delete('/api/favorite/'+rewardId).
+      success(function(data, status, headers, config) {
+        console.log(data);
+        $scope.reward.favorite = false;
+      });
+  }
 }
 function ProfileCtrl($scope, $rootScope, $cookieStore, storage, $http, $location, $routeParams) {
   if(!$cookieStore.get('currentKid')) {
@@ -432,12 +453,7 @@ function ChooseAvatarCtrl($scope, $rootScope, $cookieStore, storage, $http, $loc
 
 function navCtrl($scope, $rootScope, $cookieStore, storage, $http, $location) {
   $rootScope.direction = 'fade';
-  $rootScope.navigate = function(direction, path, backURL) {
-    $rootScope.$broadcast('navigate');
-    $rootScope.backURL = (backURL) ? backURL : $rootScope.backURL;
-    $rootScope.direction = direction;
-    $location.path(path);
-  };
+  
   $scope.showNav = false;
   $scope.toggleNav = function() {
     $scope.showNav = (!$scope.showNav);
@@ -449,28 +465,12 @@ function navCtrl($scope, $rootScope, $cookieStore, storage, $http, $location) {
 
   $rootScope.login = function(kid) {
     $cookieStore.put('currentKid', kid);
-    if(kid.admin){
-      $rootScope.grabberLabel = 'Admin';
-      $rootScope.grabberURL = '/admin';
-      $rootScope.navigate('fade','/admin-chore-feed');
+    $http.defaults.headers.common['DD-Kid-ID'] = kid._id;
 
-      $rootScope.navType = 'admin';
-      $rootScope.nav = [
-        {icon: 'check-mark', URL: '/admin-chore-feed', direction: 'LR'},
-        {icon: 'profile', URL: '/admin-kid-feed', direction: 'LR'},
-        {icon: 'reward', URL: '/admin-rewards', direction: 'RL'}
-      ];
-    } else {
-      $rootScope.grabberLabel = 'Me';
-      $rootScope.grabberURL = '/profile';
-      $rootScope.navType = 'kid';
-      $rootScope.nav = [
-        {icon: 'check-mark', URL: '/chores', direction: 'LR'},
-        {icon: 'ruby', URL: '/coins', direction: 'LR'},
-        {icon: 'reward', URL: '/rewards', direction: 'RL'}
-      ];
-      $rootScope.navigate('fade','/chores');
-    }
+    $rootScope.setNavigation(kid);
+
+    $rootScope.navigate('fade','/chores');
+
   }
   $rootScope.logOut = function() {
     $cookieStore.remove('currentKid');

@@ -13,7 +13,7 @@ var taskSchema = new Schema({
     type: String,
     due: Date,
     repeated: { monday: Boolean, tuesday: Boolean, wednesday: Boolean, thursday: Boolean, friday: Boolean, saturday: Boolean, sunday: Boolean },
-    
+
     done: Boolean,
     transactionId: String,
     approved: Boolean

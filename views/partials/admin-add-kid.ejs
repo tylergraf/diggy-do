@@ -24,11 +24,25 @@
       <span ng-tap="openAvatarChooser()" class="btn btn-blue">Choose Icon</span>
     </section>
 
-    <section class="form-actions">
+    <!-- <section class="form-actions">
       <button ng-show="type === 'edit'" type="submit" class="btn btn-green">Save Kid</button>
       <a ng-show="type === 'edit'" ng-tap="navigate('LR','/admin-kids')" class="btn btn-orange">Cancel</a>
       <a ng-show="type === 'edit'" ng-tap="deleteKid(kid._id)" class="btn btn-red">Delete Kid</a>
       <button ng-show="type === 'add'" type="submit" class="btn btn-green">Add Kid</button>
+    </section> -->
+    <section class="submit-actions">
+      <div class="submit-action">
+        <span class="button-label">OK</span>
+        <button type="submit" class="btn btn-green"><i class="icon icon-check"></i></button>
+      </div>
+      <div class="submit-action">
+        <span class="button-label">Cancel</span>
+        <a class="btn btn-orange" ng-tap="navigate('LR','/admin-kids')"><i class="icon icon-x"></i></a>
+      </div>
+      <div class="submit-action" ng-show="type === 'edit'">
+        <span class="button-label">Delete</span>
+        <a class="btn btn-red" ng-tap="deleteKid(kid._id)"><i class="icon icon-x"></i></a>
+      </div>
     </section>
   </form>
 </div>

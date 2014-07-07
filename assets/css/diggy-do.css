@@ -351,12 +351,14 @@ input[type=password]:focus {
 .day-view .task-list-item .task-approved {
   color: red;
   border: 1px solid red;
-  padding: 2px 3px;
+  padding: 4px 3px;
   text-transform: uppercase;
   font-weight: bold;
   font-size: 10px;
   margin-left: 10px;
-  transform: rotate(-90deg);
+  -webkit-transform: rotate(-15deg);
+  display: inline-block;
+  line-height: 1em;
 }
 .task-list-item .avatar {
   float: right;
@@ -462,7 +464,10 @@ body > .icon-ruby {
   float: right;
   font-weight: bold;
 }
-
+.flex-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
 /*COINS VIEW*/
 .coins-header .icon {
   display: block;
@@ -477,13 +482,14 @@ body > .icon-ruby {
   padding-top: 40px;
 }
 .coins-header .points {
-  width: 160px;
-  background: #f47d23;
-  height: 50px;
+  width: 180px;
+  height: 53px;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 30px;
   color: #fff;
-  line-height: 50px;
+  line-height: 46px;
+  background: transparent url('/img/points-ribbon.svg') no-repeat scroll 0 0;
+  background-size: 180px;
 }
 .coins-list .coins-list-item {
   color: #fff;
@@ -550,6 +556,7 @@ body > .icon-ruby {
   color: #fff;
   text-align: center;
   display: block;
+  position: relative;
 }
 .avatar:hover,
 .avatar:active {
@@ -569,6 +576,51 @@ body > .icon-ruby {
   display: block;
   margin-top: 5px;
 }
+
+.avatar.avatar-x-large {
+  height: 280px;
+  width: 280px;
+}
+.avatar.avatar-x-large .icon {
+  line-height: 280px;
+  font-size: 120px;
+}
+
+.avatar.avatar-large {
+  height: 130px;
+  width: 130px;
+}
+.avatar.avatar-large .icon {
+  line-height: 130px;
+  font-size: 60px;
+}
+.avatar .icon.favorite {
+  /*font-size: 40px;*/
+  color: #E2013E;
+  position: absolute;
+  width: 100%;
+  text-shadow: 0px 3px 0 #A2184A;
+}
+.avatar-wrapper {
+  margin-top: 20px;
+}
+.avatar-wrapper .avatar {
+  margin-bottom: 0px;
+}
+.avatar-label-wrapper {
+  margin-top: 20px;
+  color: #333;
+  margin-left: 20px;
+  text-align: center;
+}
+.avatar-label-1 {
+  font-weight: bold;
+}
+.avatar-btn {
+  box-shadow: 8px 8px rgba(0,0,0,0.3);
+  border-bottom: 8px solid rgba(0,0,0,0.5);
+}
+
 .avatar.avatar-grey, .avatar.avatar-grey a {background-color: #555;}
 .avatar.avatar-blue, .avatar.avatar-blue a {background-color: #0086ca;}
 .avatar.avatar-green, .avatar.avatar-green a {background-color: #00b690;}
@@ -865,6 +917,23 @@ body > .icon-ruby {
   float: left;
 }
 
+/*REWARD PAGE*/
+.page-reward .reward-wrapper {
+  margin-top: 20px;
+  text-align: center;
+}
+.page-reward .reward-label {
+  font-size: 18px;
+}
+.page-reward .reward-value {
+  font-weight: bold;
+}
+.page-reward .reward-value .icon {
+  margin-left: 6px;
+}
+.page-reward .btn-buy {
+  margin-left: 10px;
+}
 /*ADMIN REWARDS PAGE*/
 .page-admin-rewards {
   background: #bbbdc0;
@@ -900,7 +969,6 @@ body > .icon-ruby {
 .admin-list-header {
   display: -webkit-box;
   padding: 20px;
-  padding-right: 100px;
 }
 .admin-list-header .btn {
   height: 60px;
@@ -914,6 +982,7 @@ body > .icon-ruby {
 .admin-list-header h3 {
   font-size: 40px;
   text-transform: uppercase;
+  width: 190px;
 }
 .page-view-admin-chores .task-list-item {
   display: block;

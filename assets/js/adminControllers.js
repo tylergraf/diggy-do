@@ -132,7 +132,7 @@ function ChoreFeedCtrl($scope, $rootScope, $cookieStore, $http) {
             totalCounts($scope.tasks)
           });
       } else {
-        $http.post('/api/transaction/',{date: date, _kid: task._kid, _task: task._id, approved: task.approved}).
+        $http.post('/api/transaction/',{date: date, _kid: task._kid, _task: task._id, approved: task.approved, value: task.value}).
           success(function(data, status, headers, config) {
             console.log(data);
             task.transactionId = data._id;
@@ -442,7 +442,7 @@ function EditRewardCtrl($scope, $rootScope, $cookieStore, $routeParams, $http) {
   $scope.deleteReward = function(rewardId) {
     var r = confirm("Are you sure you want to delete "+ $scope.reward.name +"?");
     if(r){
-      $http.delete('/api/reward/'+kidId)
+      $http.delete('/api/reward/'+rewardId)
         .success(function(data, status, headers, config) {
           $rootScope.navigate('LR','/admin-rewards');
         });

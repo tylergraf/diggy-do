@@ -1,10 +1,13 @@
-<div class="page">
+<div class="page page-reward">
   <%- include _modal-header.ejs %>
-  <div class="avatar avatar-{{reward.avatar.color}}"><i class="icon icon-{{reward.avatar.icon}}"></i></div>
-  <ul class="unstyled table-list">
-    <li class="table-list-item" ng-repeat="reward in rewards" ng-tap="navigate('RL','/reward/'+reward._id)">
-      
-      <span class="item-label">{{reward.name}}</span>
-    </li>
-  </ul>
+  <div class="reward-wrapper">
+    <div class="avatar avatar-{{reward.avatar.color}} avatar-x-large"><i ng-show="reward.favorite" class="icon icon-star favorite"></i><i class="icon icon-{{reward.avatar.icon}}"></i></div>
+    <div class="reward-label reward-value">{{reward.value}}<i class="icon icon-ruby"></i></div>
+    <div class="reward-label reward-name">{{reward.name}}</div>
+    <div class="actions">
+      <span class="btn btn-red" ng-show="!reward.favorite" ng-tap="favoriteReward(reward._id)">Star</span>
+      <span class="btn btn-red" ng-show="reward.favorite" ng-tap="unfavoriteReward(reward._id)">Un-Star</span>
+      <span class="btn btn-green btn-buy">Buy</span>
+    </div>
+  </div>
 </div>
